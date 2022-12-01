@@ -23,10 +23,10 @@ export const Button = styled.button`
   border: none;
   z-index:20;
   background-color: transparent;
-padding-right:25px;
-@media screen and (min-width: 768px) {
+/* padding-right:25px; */
+/* @media screen and (min-width: 768px) {
    padding-right:45px;
-  }
+  } */
   @media screen and (min-width: 1280px) {
     display: none;
   }
@@ -87,14 +87,15 @@ export const AuthUserContainer = styled.div`
   gap: 12px;
   justify-content: center;
   align-items: center;
+  margin-top:50px;
   /* width: 250px; */
 
 @media screen and (min-width: 768px) {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   right: 0;
   transform: translateY(-50%);
-  justify-content: center;
+  justify-content: center; */
 }
 
 @media screen and (min-width: 1280px) {

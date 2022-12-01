@@ -8,7 +8,7 @@ export const Paragraph = styled.p`
   letter-spacing: 0.07em;
   color: black;
 z-index:20;
-padding-left:20px;
+/* padding-left:20px; */
   @media screen and (min-width: 768px) {
     font-size: 32px;
     line-height: calc(48 / 32);

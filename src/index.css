@@ -17,6 +17,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--main-background);
   cursor: default;
+  background-color: white;
 }
 
 code {

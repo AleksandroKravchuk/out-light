@@ -1,7 +1,7 @@
 import { lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import SharedLayout from 'pages/SharedLayout/SharedLayout';
-// import MainPage from 'components/MainPage/MainPage';
+import MainPage from 'components/MainPage/MainPage';
 import { useSelector } from 'react-redux';
 
 // import NoticesCategoryList from 'components/Notices/NoticesCategoryList/NoticesCategoryList';
@@ -37,7 +37,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        {/* <Route index element={<MainPage />} /> */}
+        <Route index element={<MainPage />} />
 
         {/* <Route path="news" element={<AsyncNewsPage />} /> */}
 

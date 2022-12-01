@@ -44,7 +44,7 @@ padding-top: 46px;
 width: 95%;
 /* height: 100%; */
 overflow: hidden;
-background-color: #FDF7F2;
+background-color:#FDF7F2;
 row-gap: 60px;
 align-items: center;
 
@@ -87,7 +87,7 @@ export const AuthUserContainer = styled.div`
   gap: 12px;
   justify-content: center;
   align-items: center;
-  margin-top:50px;
+  /* margin-top:50px; */
   /* width: 250px; */
 
 @media screen and (min-width: 768px) {

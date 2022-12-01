@@ -84,7 +84,6 @@ export const List = styled.ul`
   @media screen and (min-width: 1280px) {
     display: flex;
 width:480px;
-    /* align-items:center; */
     column-gap: 80px;
 }
 `

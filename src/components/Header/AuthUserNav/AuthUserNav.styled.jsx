@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const StyledWhiteLink = styled(Link)`
   box-sizing: border-box;
+  margin-left:8px;
   border: 2px solid #f59256;
   color: black;
   font-weight: 500;

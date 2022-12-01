@@ -7,7 +7,7 @@ max-width: 320px;
 padding: 0 20px;
 margin: 0 auto;
 height: 100vh;
-
+position:relative;
 @media screen and (min-width: 768px) {
     max-width: 768px;
     padding: 20px 32px 100px;

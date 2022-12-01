@@ -9,7 +9,7 @@ export const MainPageSection = styled.div`
   padding-top: 60px;
   margin: 0 auto;
   position: relative;
-
+width:100%;
   @media screen and (min-width: 768px) {
     padding-top: 92px;
   }
@@ -27,19 +27,22 @@ export const MainHeader = styled.p`
 `;
 
 export const ImageContainer = styled.div`
-  width: 320px;
-  height: 466px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  margin-top:50px;
+  margin-left:auto;
+  margin-right:auto;
+  /* margin: 0 auto; */
   background-image: url(${mobileBack});
   background-size: cover;
   background-position: left bottom;
   background-repeat: no-repeat;
-  transform: translateX(-20px);
+  /* transform: translateX(-20px); */
   display: flex;
   align-items: flex-end;
 
   @media screen and (min-width: 768px) {
-    width: 768px;
+    width: 100%;
     height: 1045px;
     background-image: url(${tabletBack});
     background-size: cover;
@@ -49,12 +52,12 @@ export const ImageContainer = styled.div`
 
   @media screen and (min-width: 1280px) {
     position: absolute;
-    left: -120px;
-    width: 100vw;
+    left: 0px;
+    width: 100%;
     height: 655px;
     background-image: url(${desktopBack}), url(${desktopBack2}), url(${heart});
     background-size: 1120px 410px, 585px 410px, 92px 89px;
-    background-position: left bottom, right bottom, 715px 0;
+    background-position: left bottom, 690px bottom, 715px 0;
   }
 `;
 
@@ -90,8 +93,9 @@ export const Header = styled.h1`
   }
 
   @media screen and (min-width: 1280px) {
-    left: -100px;
+    left: 0px;
     display: block;
     max-width: 588px;
+    margin-left:16px;
   }
 `;

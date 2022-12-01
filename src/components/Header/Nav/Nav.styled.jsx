@@ -4,12 +4,16 @@ import { NavLink } from 'react-router-dom';
 export const NavigationItem = styled.li`
   text-decoration: none;
   padding-top: 40px;
+  width: 100%;
+
   &:first-child {
     padding-top: 0;
   }
 
   @media screen and (min-width: 1280px) {
     padding: 0;
+
+    /* width:100px; */
   }
 `;
 
@@ -43,44 +47,44 @@ export const NavigationLink = styled(NavLink)`
   }
 `
 export const Navigation = styled.nav`
-  text-align: center;
+background-color: #FDF7F2;
+ pointer-events: none;
 
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
+   @media screen and (max-width: 1279px) {
+  text-align: center;
+width: 100%;
     position: absolute;
-    background-color: #FDF7F2;
-    top: 25px;
-    right: -115px;
-    width: 768px;
+    top: 40px;
+    right: 0;
     height: 0;
     padding-top: 108px;
     opacity: 0;
-    pointer-events: none;
+
     transform: scaleY(0.5);
     transform-origin: top;
     transition: transform 250ms linear, opacity 250ms linear;
-
-    &.shown {
+     &.shown {
       transform: scaleY(1);
       opacity: 1;
-      width: 768px;
+      width: 100%;
       height: 110vh;
+      z-index: 30;
       visibility: visible;
       pointer-events: auto;
     }
-  }
-
+    }
     @media screen and (min-width: 1280px) {
-      position: static;
-      padding: 0;
+      position: relative;
     }
 
 
 `
 
 export const List = styled.ul`
-
   @media screen and (min-width: 1280px) {
     display: flex;
+width:480px;
+    /* align-items:center; */
     column-gap: 80px;
 }
 `

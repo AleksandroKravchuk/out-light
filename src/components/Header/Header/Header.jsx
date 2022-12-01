@@ -37,18 +37,19 @@ const Header = () => {
 
         <Logo />
 
-        <MobileMenu className={shown && 'shown'}>
-
-          <Nav set={shown} />
-          <AuthUserContainer >
+ <Nav set={shown} />
+<AuthUserContainer className={shown && 'shown'}>
             {!user
               ? <AuthNav />
               : <UserNav />
             }
-          </AuthUserContainer>
+        </AuthUserContainer>
+
+        <MobileMenu className={shown && 'shown'}>
+
+
+
         </MobileMenu>
-
-
           <Button onClick={toggleUser}>
             <TiThMenu size={36} />
           </Button>

@@ -6,6 +6,7 @@ import desktopBack2 from 'img/desktopBack2.png';
 import heart from 'img/heart.png';
 
 export const MainPageSection = styled.div`
+background-color: #FDF7F2;
   padding-top: 60px;
   margin: 0 auto;
   position: relative;

@@ -19,7 +19,7 @@ import { noticesApi } from './notices/noticesApi';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'id', 'isLoggedIn'],
+  // whitelist: ['token', 'id', 'isLoggedIn'],
 };
 
 export const store = configureStore({

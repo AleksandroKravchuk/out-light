@@ -33,7 +33,7 @@ padding-right:25px;
 `;
 
 export const MobileMenu = styled.div`
-background-color:red;
+/* background-color:red; */
 position: absolute;
 top: 0;
 /* left: -20px; */
@@ -44,7 +44,7 @@ padding-top: 46px;
 width: 95%;
 /* height: 100%; */
 overflow: hidden;
-/* background-color: #FDF7F2; */
+background-color: #FDF7F2;
 row-gap: 60px;
 align-items: center;
 

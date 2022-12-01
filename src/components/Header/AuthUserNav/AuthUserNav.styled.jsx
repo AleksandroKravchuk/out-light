@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const StyledWhiteLink = styled(Link)`
+export const StyledWhiteLink = styled(NavLink)`
   box-sizing: border-box;
   margin-left:8px;
   border: 2px solid #f59256;
@@ -12,6 +12,10 @@ export const StyledWhiteLink = styled(Link)`
   font-size: 14px;
   line-height: calc(19 / 14);
   letter-spacing: 0.04em;
+&.active{
+background-color: #f59256;
+  color: white;
+}
 
 `;
 

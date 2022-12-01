@@ -38,13 +38,15 @@ export const NavigationLink = styled(NavLink)`
     font-size: 20px;
     line-height: calc(27 / 20);
   }
-
-  &:hover,
-  &:focus {
-    color: #f59256;
+&.active{
+ color: #f59256;
     text-decoration-line: underline;
     transform: scale(1.1);
-  }
+}
+  /* &:hover,
+  &:focus {
+
+  } */
 `
 export const Navigation = styled.nav`
 background-color: #FDF7F2;

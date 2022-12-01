@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 // import NoticesCategoryList from 'components/Notices/NoticesCategoryList/NoticesCategoryList';
 
 // const AsyncMainPage = lazy(() => import('components/MainPage/MainPage'));
-// const AsyncNewsPage = lazy(() => import('pages/NewsPages/NewsPages'));
+const AsyncNewsPage = lazy(() => import('pages/NewsPages/NewsPages'));
 // const AsyncNoticesPage = lazy(() => import('pages/NoticesPage/NoticesPage'));
 
 // const AsyncNoticesCategoryList = lazy(() =>
@@ -21,8 +21,8 @@ import { useSelector } from 'react-redux';
 // const AsyncOwnNoticesPage = lazy(() => import('pages/NoticesPage/OwnNoticesPage'));
 // const AsyncPrivateRoute = lazy(() => import('components/PrivateRoutes/PrivateRoutes'));
 // const AsyncNoticesSearch = lazy(() => import('components/NoticesSearch/NoticesSearch'));
-// const AsyncRegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
-// const AsyncLoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+const AsyncRegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const AsyncLoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 // const AsyncUserPage = lazy(() => import('pages/UserPage/UserPage'));
 // const AsyncOurFriendsPage = lazy(() =>
 //   import('pages/OurFriendsPage/OurFriendsPage')
@@ -38,8 +38,10 @@ const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<MainPage />} />
-
-        {/* <Route path="news" element={<AsyncNewsPage />} /> */}
+        <Route path="register" element={<AsyncRegisterPage />} />
+          <Route path="login" element={ <AsyncLoginPage />}
+        />
+        <Route path="news" element={<AsyncNewsPage />} />
 
         {/* <Route path="notices" element={<AsyncNoticesPage />}>
           <Route path=":path" element={<AsyncNoticesCategoryList />} />
@@ -51,15 +53,10 @@ const App = () => {
           <Route path='own' element={<AsyncOwnNoticesPage />} /> */}
         </Route> */}
 
-        {/* <Route path="friends" element={<AsyncOurFriendsPage />} />
+        {/* <Route path="friends" element={<AsyncOurFriendsPage />} /> */}
 
-        <Route path="register" element={<AsyncRegisterPage />} /> */}
-        {/* <Route
-          path="login"
-          element={
-            isLoggedIn ? <Navigate replace to="/user" /> : <AsyncLoginPage />
-          }
-        /> */}
+
+
         {/* <Route path="user" element={<AsyncUserPage />} />
 
         <Route path="friends" element={<AsyncOurFriendsPage />} /> */}

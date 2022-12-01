@@ -13,7 +13,12 @@ width:100%;
 background-color: #FDF7F2;
   @media screen and (min-width: 768px) {
     padding-top: 92px;
+    padding-left:16px;
   }
+    /* @media screen and (min-width: 1280px) {
+   max-width: 1280px;
+    padding: 0px 16px;
+  } */
 `;
 
 export const MainHeader = styled.p`
@@ -30,7 +35,7 @@ export const MainHeader = styled.p`
 export const ImageContainer = styled.div`
   width: 100%;
   height: 100%;
-  margin-top:50px;
+  padding-top:50px;
   margin-left:auto;
   margin-right:auto;
   /* margin: 0 auto; */
@@ -54,7 +59,8 @@ background-color: #FDF7F2;
   @media screen and (min-width: 1280px) {
     position: absolute;
     left: 0px;
-    width: 100%;
+    margin-left:-16px;
+    width: 102.6%;
     height: 655px;
     background-image: url(${desktopBack}), url(${desktopBack2}), url(${heart});
     background-size: 1120px 410px, 585px 410px, 92px 89px;

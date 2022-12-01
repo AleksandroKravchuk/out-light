@@ -6,11 +6,11 @@ import desktopBack2 from 'img/desktopBack2.png';
 import heart from 'img/heart.png';
 
 export const MainPageSection = styled.div`
-background-color: #FDF7F2;
   padding-top: 60px;
   margin: 0 auto;
   position: relative;
 width:100%;
+background-color: #FDF7F2;
   @media screen and (min-width: 768px) {
     padding-top: 92px;
   }
@@ -41,7 +41,7 @@ export const ImageContainer = styled.div`
   /* transform: translateX(-20px); */
   display: flex;
   align-items: flex-end;
-
+background-color: #FDF7F2;
   @media screen and (min-width: 768px) {
     width: 100%;
     height: 1045px;

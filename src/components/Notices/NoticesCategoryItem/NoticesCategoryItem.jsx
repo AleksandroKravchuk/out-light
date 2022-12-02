@@ -46,7 +46,30 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
     photo =
       'https://t4.ftcdn.net/jpg/03/08/68/19/360_F_308681935_VSuCNvhuif2A8JknPiocgGR2Ag7D1ZqN.jpg';
   }
-  console.log('notice', notice)
+
+  const age = () => {
+  const current = new Date();
+  const date = `${current.getFullYear()}`;
+  const yearBirth = notice.birth.slice(6, 10);
+
+    const year = date - yearBirth;
+    if (year <= 1) {
+      return'one year'
+    }
+    if (year >1 && year<=2) {
+      return 'two years'
+    }
+     if (year >2 && year<=23) {
+      return'three years'
+     }
+     else {
+       return 'more three years'
+    }
+}
+
+
+// console.log(yearBirth)
+//   console.log(date )
 
   const handleBtnClick = async id => {
     console.log(id)
@@ -64,7 +87,7 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
       return;
     }
 
-    console.log('add to favorite: ', id);
+    // console.log('add to favorite: ', id);
     await addToFavorite(id, token);
     onClick();
     }
@@ -84,7 +107,7 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
-  console.log(notice);
+
 
     return (
         <NoticeCategoryItemStyled>
@@ -112,14 +135,14 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
                     </li>
                     <li>
                         <CardDetailInfo>{notice.breed}</CardDetailInfo>
-                        <CardDetailInfo>{notice.place}</CardDetailInfo>
-                        <CardDetailInfo>{notice.age}</CardDetailInfo>
+                        <CardDetailInfo>{notice.location}</CardDetailInfo>
+                        <CardDetailInfo>{age()}</CardDetailInfo>
                     </li>
                 </CardDetailsContainer>
             </CardInfoContainer>
             <Button type="button" onClick={handleOpenModal}>Learn more</Button>
             {showModal && <Modal onClose={handleCloseModal}>
-                <ModalNotice notice={notice} onClose={handleCloseModal} onAddFavoriteBtnClick={handleBtnClick} onRemoveFavoriteBtnClick={handleBtnClick}/>
+                {/* <ModalNotice notice={notice} onClose={handleCloseModal} onAddFavoriteBtnClick={handleBtnClick} onRemoveFavoriteBtnClick={handleBtnClick}/> */}
             </Modal>}
         </NoticeCategoryItemStyled>
     );

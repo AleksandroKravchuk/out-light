@@ -42,13 +42,20 @@ const LoginPage = () => {
     }
   };
 
-  const loginNewUser = () => {
+  const loginNewUser = async() => {
     const newUser = {
       email,
       password,
     };
-    loginUser(newUser);
+    await loginUser(newUser).then(err => {
+
+      if (err.error) {
+      return Notiflix.Notify.failure(`${err.error.data.message}`);
+    }
+       Notiflix.Notify.success('You are logged in');
     navigate('/user', { replace: true });
+    });
+
   };
 
   const handleSubmit = event => {
@@ -63,9 +70,7 @@ const LoginPage = () => {
         'Please, enter a valid password without spaces!'
       );
     }
-
     loginNewUser();
-
     reset();
   };
 

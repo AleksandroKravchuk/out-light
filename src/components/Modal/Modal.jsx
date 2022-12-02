@@ -19,8 +19,8 @@ const Modal = props => {
     }
   };
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);  
-    
+    window.addEventListener('keydown', handleKeyDown);
+
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [handleKeyDown]);
 

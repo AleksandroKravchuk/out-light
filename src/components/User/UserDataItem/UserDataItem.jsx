@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import edit from 'icons/edit.svg';
 import done from 'icons/done.svg';
@@ -14,28 +14,44 @@ import {
 } from './UserDataItem.styled';
 
 export const UserDataItem = ({ user }) => {
-  const [updateUser, setUpdateUser] = useState(false);
+  const [updateUserInfo] =useUpdateUserInfoMutation()
+  const { name, email, birthday, phone, city } = user;
+  const [updateEmail, setUpdateEmail] = useState(false);
+  const [updateName, setUpdateName] = useState(false);
+  const [updateBirthday, setUpdateBirthday] = useState(false);
+  const [updateCity, setUpdateCity] = useState(false);
+  const [updatePhone, setUpdatePhone] = useState(false);
   const [nameUser, setNameUser] = useState('');
   const [emailUser, setEmailUser] = useState('');
   const [birthdayUser, setBirthdayUser] = useState('');
   const [phoneUser, setPhoneUser] = useState('');
   const [cityUser, setCityUser] = useState('');
-  const [userInfo, setUserInfo] = useState({});
-  // const [updateInfoUser] = useUpdateUserInfoMutation();
-  // console.log(updateInfoUser);
 
-  const { name, email, birthday, phone, city } = user;
+  useEffect(() => {
+    setNameUser(name);
+    setEmailUser(email);
+    setBirthdayUser(birthday);
+    setCityUser(city);
+    setPhoneUser(phone);
+},[birthday,name,city,phone,email])
 
-  const handleUpdateUser = evt => {
-    console.log(evt.target);
-    setUpdateUser(!updateUser);
-    console.log(updateUser);
+  const handleUpdateName = evt => {
+    setUpdateName(!updateName);
   };
-
+  const handleUpdateEmail= evt => {
+    setUpdateEmail(!updateEmail);
+  };
+   const handleUpdateBirthday= evt => {
+    setUpdateBirthday(!updateBirthday);
+  };
+  const handleUpdateCity= evt => {
+    setUpdateCity(!updateCity);
+  };
+    const handleUpdatePhone= evt => {
+    setUpdatePhone(!updatePhone);
+  };
   const handleChangeValue = evt => {
     const { name, value } = evt.currentTarget;
-    console.log(name, value);
-
     switch (name) {
       case 'nameUser':
         setNameUser(value);
@@ -64,8 +80,6 @@ export const UserDataItem = ({ user }) => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    console.log('click');
-
     const updateUserValue = {
       name: nameUser,
       email: emailUser,
@@ -74,11 +88,12 @@ export const UserDataItem = ({ user }) => {
       city: cityUser,
     };
 
-    // updateInfoUser({payload: updateUserValue});
-    setUserInfo(updateUserValue);
-    setUpdateUser(!updateUser);
-
-    console.log(updateUserValue);
+updateUserInfo(updateUserValue )
+    setUpdateEmail(!updateEmail);
+    setUpdateName(!updateName);
+    setUpdateBirthday(!updateBirthday);
+    setUpdateCity(!updateCity);
+     setUpdatePhone(!updatePhone);
   };
 
   return (
@@ -86,16 +101,16 @@ export const UserDataItem = ({ user }) => {
       {}
       <UserInfoItem>
         <UserInfoText>Name:</UserInfoText>
-        {!updateUser ? (
+        {!updateName? (
           <>
-            <UserInfoData>{name}</UserInfoData>
-            <UserInfoBtn type="button" onClick={handleUpdateUser}>
+            <UserInfoData>{nameUser}</UserInfoData>
+            <UserInfoBtn type="button" onClick={handleUpdateName}>
               <img src={edit} alt="edit information about user" />
             </UserInfoBtn>
           </>
         ) : (
           <>
-            <FormUpdate onSubmit={handleSubmit}>
+            <FormUpdate encType="multipart/form-data" onSubmit={handleSubmit}>
               <InputUpdate
                 type="text"
                 name="nameUser"
@@ -103,7 +118,7 @@ export const UserDataItem = ({ user }) => {
                 onChange={handleChangeValue}
               />
             </FormUpdate>
-            <UserInfoBtn type="button" onClick={handleSubmit}>
+            <UserInfoBtn type="button" onClick={handleUpdateName}>
               <img src={done} alt="update information about user" />
             </UserInfoBtn>
           </>
@@ -112,12 +127,12 @@ export const UserDataItem = ({ user }) => {
 
       <UserInfoItem>
         <UserInfoText>Email:</UserInfoText>
-        {!updateUser ? (
+        {!updateEmail ? (
           <>
-            <UserInfoData>{email}</UserInfoData>
+            <UserInfoData>{emailUser}</UserInfoData>
             <UserInfoBtn
               type="button"
-              onClick={handleUpdateUser}
+              onClick={handleUpdateEmail}
               isActive="true"
             >
               <img src={edit} alt="edit information about user" />
@@ -133,7 +148,7 @@ export const UserDataItem = ({ user }) => {
                 onChange={handleChangeValue}
               />
             </FormUpdate>
-            <UserInfoBtn type="button" onClick={handleSubmit}>
+            <UserInfoBtn type="button" onClick={handleUpdateEmail}>
               <img src={done} alt="update information about user" />
             </UserInfoBtn>
           </>
@@ -142,10 +157,10 @@ export const UserDataItem = ({ user }) => {
 
       <UserInfoItem>
         <UserInfoText>Birthday:</UserInfoText>
-        {!updateUser ? (
+        {!updateBirthday ? (
           <>
-            <UserInfoData>{birthday}</UserInfoData>
-            <UserInfoBtn type="button" onClick={handleUpdateUser}>
+            <UserInfoData>{birthdayUser}</UserInfoData>
+            <UserInfoBtn type="button" onClick={handleUpdateBirthday}>
               <img src={edit} alt="edit information about user" />
             </UserInfoBtn>
           </>
@@ -159,7 +174,7 @@ export const UserDataItem = ({ user }) => {
                 onChange={handleChangeValue}
               />
             </FormUpdate>
-            <UserInfoBtn type="button" onClick={handleSubmit}>
+            <UserInfoBtn type="button" onClick={handleUpdateBirthday}>
               <img src={done} alt="update information about user" />
             </UserInfoBtn>
           </>
@@ -168,10 +183,10 @@ export const UserDataItem = ({ user }) => {
 
       <UserInfoItem>
         <UserInfoText>Phone:</UserInfoText>
-        {!updateUser ? (
+        {!updatePhone ? (
           <>
-            <UserInfoData>{phone}</UserInfoData>
-            <UserInfoBtn type="button" onClick={handleUpdateUser}>
+            <UserInfoData>{phoneUser}</UserInfoData>
+            <UserInfoBtn type="button" onClick={handleUpdatePhone}>
               <img src={edit} alt="edit information about user" />
             </UserInfoBtn>
           </>
@@ -185,7 +200,7 @@ export const UserDataItem = ({ user }) => {
                 onChange={handleChangeValue}
               />
             </FormUpdate>
-            <UserInfoBtn type="button" onClick={handleSubmit}>
+            <UserInfoBtn type="button" onClick={handleUpdatePhone}>
               <img src={done} alt="update information about user" />
             </UserInfoBtn>
           </>
@@ -194,10 +209,10 @@ export const UserDataItem = ({ user }) => {
 
       <UserInfoItem>
         <UserInfoText>City:</UserInfoText>
-        {!updateUser ? (
+        {!updateCity ? (
           <>
-            <UserInfoData>{city}</UserInfoData>
-            <UserInfoBtn type="button" onClick={handleUpdateUser}>
+            <UserInfoData>{cityUser}</UserInfoData>
+            <UserInfoBtn type="button" onClick={handleUpdateCity}>
               <img src={edit} alt="edit information about user" />
             </UserInfoBtn>
           </>
@@ -211,7 +226,7 @@ export const UserDataItem = ({ user }) => {
                 onChange={handleChangeValue}
               />
             </FormUpdate>
-            <UserInfoBtn type="button" onClick={handleSubmit}>
+            <UserInfoBtn type="button" onClick={handleUpdateCity}>
               <img src={done} alt="update information about user" />
             </UserInfoBtn>
           </>

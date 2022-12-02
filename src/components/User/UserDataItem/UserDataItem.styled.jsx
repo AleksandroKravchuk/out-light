@@ -68,19 +68,19 @@ export const UserInfoText = styled.p`
 
 export const FormUpdate = styled.form`
   order: 2;
-  width: 150px;
+  width: 250px;
 `;
 export const InputUpdate = styled.input`
-  width: 137px;
-
+  width: 90%;
   background: #fdf7f2;
-  border: 1px solid rgba(245, 146, 86, 0.5);
+  border: none;
+  outline:none;
   border-radius: 40px;
-  padding: 4px 4px 4px 18px;
+  /* padding: 1px 4px 1px 1px; */
 
   font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
+ font-size: 18px;
+    line-height: 20px;
   align-items: center;
   letter-spacing: 0.04em;
 

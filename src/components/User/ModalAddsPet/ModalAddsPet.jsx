@@ -14,9 +14,7 @@ import {
   PetImage,
 } from './ModalAddsPet.styled';
 import { useState} from 'react';
-// import { useSelector } from 'react-redux';
-// import {response} from 'api'
-// import { fetchPetAdd } from 'api/petApi';
+
 
 const MODAL_STATE = {
   IDLE: 'idle',
@@ -36,6 +34,7 @@ const [createPet] = useCreateUserPetsMutation();
   const [breed, setBreed] = useState('');
   const [photoPet, setPhotoPet] = useState(null);
   const [comments, setComments] = useState('');
+  const [page, setPage] = useState(true);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -66,42 +65,23 @@ const [createPet] = useCreateUserPetsMutation();
     }
   };
 
-// <<<<<<< HEAD:src/components/User/ModalAddsPet/ModalAddsPet.jsx
-//   const handleSubmit = async () => {
-//     const res = await getAddsPet({name: petName, birth, breed}, token)
-//     console.log(res);
-//   }
-// =======
-  // const newPet = {name,birth,breed,comments,photoPet}
           const formData = new FormData();
     formData.append('name', name);
     formData.append('birth', birth);
     formData.append('breed', breed);
     formData.append('comments', comments);
-    formData.append('photoPet', photoPet);
+  formData.append('photoPet', photoPet);
+
   const handleSubmit = e => {
-
     e.preventDefault();
-    if (modalState === MODAL_STATE.IDLE) {
-      return setModalState(MODAL_STATE.UPLOAD_IMAGE);
+    if (page) {
+      setPage(false)
+    } else {
+      createPet(formData);
+    onClose();
     }
-    if (modalState === MODAL_STATE.UPLOAD_IMAGE) {
-      return setModalState(MODAL_STATE.DONE);
-    }
-    createPet(formData)
+
   };
-
-  // useEffect(() => {
-  //   if (modalState === MODAL_STATE.DONE) {
-  //     addPet({ name: petName, birth, breed, file, info }, token)
-  //     onClose();
-  //   }
-  // }, [modalState, petName, birth, breed, file, info, token, onClose]);
-
-  // const selectFile = e => {
-  //   setFile(e.target.files[0]);
-  // };
-
   return (
     <>
       <CloseModal type="button" onClick={onClose}>
@@ -111,7 +91,7 @@ const [createPet] = useCreateUserPetsMutation();
       <ModalName>Add pet</ModalName>
 
       <form encType="multipart/form-data" onSubmit={handleSubmit}>
-        {modalState === MODAL_STATE.IDLE ? (
+        {page? (
           <>
             <Input
               type="text"
@@ -138,9 +118,9 @@ const [createPet] = useCreateUserPetsMutation();
               onChange={handleChange}
             />
           </>
-        ) : null}
+        ) :
 
-        {modalState === MODAL_STATE.UPLOAD_IMAGE ? (
+     (
           <>
             <AddFileInputContainer>
               <AddFileLabelInput htmlFor="uploadFile">
@@ -176,14 +156,20 @@ const [createPet] = useCreateUserPetsMutation();
               onChange={handleChange}
             />
           </>
-        ) : null}
-
-        <Button
+        ) }
+{page? <Button
           type="submit"
-          content={modalState === MODAL_STATE.UPLOAD_IMAGE ? 'Done' : 'Next'}
+          content={'Next'}
           variant="primary"
 
-        />
+        /> : <Button
+          type="submit"
+          content={ 'Done' }
+          variant="primary"
+
+        />}
+
+
         <Button type="button" content="Cancel" variant="inverse" />
       </form>
     </>

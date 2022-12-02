@@ -7,99 +7,47 @@ import {
 import { UserDataItem } from 'components/User/UserDataItem/UserDataItem';
 import editPhoto from 'icons/editPhoto.svg';
 import { Avatar, EditPhotoBtn, ImgUser, UserInfo } from './UserData.styled';
-
-import { response } from 'api';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 export const UserData = () => {
-  const [file, setFile] = useState({});
-  const [user, setUser] = useState([]);
-  const getUserInfo = useGetUserInfoQuery();
+    const {data, getUserInfo } = useGetUserInfoQuery();
   const [updateAvatar] = useUpdateAvatarMutation();
-
-  const token = useSelector(state => state.auth.token)
-
-
-  const {getUser} = response;
-
-  const fetchUser = async (token) => {
-    const res = await getUser(token);
-    setUser(res);
-  };
-
+  const [file, setFile] = useState({});
+  const [user, setUser] = useState({});
   const inputRef = useRef(null);
-
-  // const handleUploadClick = event => {
-  //   const click = inputRef.current?.click();
-  //   return click;
-  //   // console.log(click);
-  // };
-
   const [selectedFile, setSelectedFile] = useState();
   const [isFilePicked, setIsFilePicked] = useState(false);
+
+
+  useEffect(() => {
+    if (!data) {
+      return
+    }
+    setUser(data.data.user)
+},[data])
+
 
   const handleChange = evt => {
     if (!evt.target.files) {
       return;
     }
-
     setSelectedFile(evt.target.files[0]);
-    console.log(evt.target.files[0]);
-    console.log(typeof selectedFile);
-    console.log(selectedFile);
-    setIsFilePicked(true);
-
-    // const avatar = evt.target.files[0];
-
     // console.log(evt.target.files[0]);
-    // handleSubmit();
-    // return avatar;
-    // console.log(file);
-    // handleFile(fileUploaded);
+    setIsFilePicked(true);
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    // const url = 'http://localhost:3000/uploadFile';
-    // const url = `${ROUTES.BASE_URL}/auth/avatars`;
-    // console.log(url);
-    // console.log(avatar);
-    console.log(selectedFile);
-    console.log('Click');
-
     const formData = new FormData();
-
     formData.append('File', selectedFile);
 
-    const AUTH_TOKEN = 'Bearer ';
-
-    axios.defaults.baseURL = 'https://team-api-server-outlight.onrender.com';
-    axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-    axios.defaults.headers.patch['content-type'] = 'multipart/form-data';
-
-    // axios('https://team-api-blended2.herokuapp.com/avatars', {
-    //   method: 'PATCH',
-    //   body: formData,
-    // })
-    //   .then(response => response.json())
-    //   .then(result => {
-    //     console.log('Success:', result);
-    //   })
-    //   .catch(error => {
-    //     console.error('Error:', error);
-    //   });
   }
-
-  useEffect(() => {
-    // fetchUser(token)
-  }, []);
 
   const { logo, name } = user;
   return (
     <UserInfo>
       <Avatar>
-        <ImgUser src={`https://team-api-server-outlight.onrender.com/${logo}`} alt={name} />
+        <ImgUser src={user.logo} alt={name} />
         <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <input
             type="file"

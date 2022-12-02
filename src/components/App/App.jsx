@@ -29,7 +29,7 @@ const AsyncUserPage = lazy(() => import('pages/UserPage/UserPage'));
 const AsyncOurFriendsPage = lazy(() =>
   import('pages/OurFriendsPage/OurFriendsPage')
 );
-// const NotFound = lazy(() => import('pages/NotFound'));
+const NotFound = lazy(() => import('pages/NotFound'));
 
 const App = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
@@ -40,30 +40,31 @@ const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<MainPage />} />
+
+
         <Route path="register" element={<AsyncRegisterPage />} />
         <Route path="login" element={ <AsyncLoginPage />}/>
         <Route path="news" element={<AsyncNewsPage />} />
         <Route path="friends" element={<AsyncOurFriendsPage />} />
+
+       <Route path="user" element={<AsyncUserPage />} />
+
+
         <Route path="notices" element={<AsyncNoticesPage />}>
           <Route path=":path" element={<AsyncNoticesCategoryList />} />
-          {/* <Route path='sell' element={<AsyncSellNoticesPage />} /> */}
-          {/* <Route path='for-free' element={<NoticesCategoryList />} />
-          <Route path='lost-found' element={<AsyncLostFoundNoticesPage />} /> */}
-          {/* <Route path='favorite' element={<AsyncFavoriteNoticesPage />} />
-          <Route path='own' element={<AsyncOwnNoticesPage />} /> */}
         </Route>
       </Route>
+         <Route path="*" element={<NotFound />} />
 
 
 
 
 
-        <Route path="user" element={<AsyncUserPage />} />
 
 
 
 
-      {/* <Route path="*" element={<NotFound />} /> */}
+
     </Routes>
   );
 };

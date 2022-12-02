@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/out-light/static/css/main.d643c097.css",
-    "main.js": "/out-light/static/js/main.2541bb4d.js",
+    "main.js": "/out-light/static/js/main.88f2f29c.js",
     "static/js/475.faa572c5.chunk.js": "/out-light/static/js/475.faa572c5.chunk.js",
     "static/js/587.7d2113bf.chunk.js": "/out-light/static/js/587.7d2113bf.chunk.js",
     "static/js/664.b9e8cc1a.chunk.js": "/out-light/static/js/664.b9e8cc1a.chunk.js",
-    "static/js/561.535b6a5a.chunk.js": "/out-light/static/js/561.535b6a5a.chunk.js",
+    "static/js/858.32f19fb9.chunk.js": "/out-light/static/js/858.32f19fb9.chunk.js",
     "static/js/439.3eafb46f.chunk.js": "/out-light/static/js/439.3eafb46f.chunk.js",
     "static/js/150.77740663.chunk.js": "/out-light/static/js/150.77740663.chunk.js",
     "static/js/496.6de24d5e.chunk.js": "/out-light/static/js/496.6de24d5e.chunk.js",
@@ -21,17 +21,17 @@
     "index.html": "/out-light/index.html",
     "static/media/Vector.svg": "/out-light/static/media/Vector.7cb83b3c6b1a33c3366bfcd09b185b7e.svg",
     "main.d643c097.css.map": "/out-light/static/css/main.d643c097.css.map",
-    "main.2541bb4d.js.map": "/out-light/static/js/main.2541bb4d.js.map",
+    "main.88f2f29c.js.map": "/out-light/static/js/main.88f2f29c.js.map",
     "475.faa572c5.chunk.js.map": "/out-light/static/js/475.faa572c5.chunk.js.map",
     "587.7d2113bf.chunk.js.map": "/out-light/static/js/587.7d2113bf.chunk.js.map",
     "664.b9e8cc1a.chunk.js.map": "/out-light/static/js/664.b9e8cc1a.chunk.js.map",
-    "561.535b6a5a.chunk.js.map": "/out-light/static/js/561.535b6a5a.chunk.js.map",
+    "858.32f19fb9.chunk.js.map": "/out-light/static/js/858.32f19fb9.chunk.js.map",
     "439.3eafb46f.chunk.js.map": "/out-light/static/js/439.3eafb46f.chunk.js.map",
     "150.77740663.chunk.js.map": "/out-light/static/js/150.77740663.chunk.js.map",
     "496.6de24d5e.chunk.js.map": "/out-light/static/js/496.6de24d5e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d643c097.css",
-    "static/js/main.2541bb4d.js"
+    "static/js/main.88f2f29c.js"
   ]
 }

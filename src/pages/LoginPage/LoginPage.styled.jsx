@@ -37,6 +37,7 @@ width:114%;
   @media screen and (min-width: 1280px) {
     top: 0px;
     left: -30px;
+     width: 105%;
     background-image: url(${Waves});
   }
 `;

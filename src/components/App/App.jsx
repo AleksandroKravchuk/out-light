@@ -24,9 +24,9 @@ const AsyncNewsPage = lazy(() => import('pages/NewsPages/NewsPages'));
 const AsyncRegisterPage = lazy(() => import('pages/LoginPage/RegisterPage'));
 const AsyncLoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 // const AsyncUserPage = lazy(() => import('pages/UserPage/UserPage'));
-// const AsyncOurFriendsPage = lazy(() =>
-//   import('pages/OurFriendsPage/OurFriendsPage')
-// );
+const AsyncOurFriendsPage = lazy(() =>
+  import('pages/OurFriendsPage/OurFriendsPage')
+);
 // const NotFound = lazy(() => import('pages/NotFound'));
 
 const App = () => {
@@ -39,10 +39,11 @@ const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<MainPage />} />
         <Route path="register" element={<AsyncRegisterPage />} />
-          <Route path="login" element={ <AsyncLoginPage />}
+        <Route path="login" element={ <AsyncLoginPage />}
         />
-        <Route path="news" element={<AsyncNewsPage />} />
 
+        <Route path="news" element={<AsyncNewsPage />} />
+        <Route path="friends" element={<AsyncOurFriendsPage />} />
         {/* <Route path="notices" element={<AsyncNoticesPage />}>
           <Route path=":path" element={<AsyncNoticesCategoryList />} />
           {/*
@@ -53,7 +54,7 @@ const App = () => {
           <Route path='own' element={<AsyncOwnNoticesPage />} /> */}
         </Route> */}
 
-        {/* <Route path="friends" element={<AsyncOurFriendsPage />} /> */}
+
 
 
 

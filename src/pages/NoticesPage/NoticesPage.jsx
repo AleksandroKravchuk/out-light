@@ -31,7 +31,6 @@ const [showModal, setShowModal] = useState(false);
 
     const token = useSelector(state => state.auth.token);
     const user = useSelector(state => state.auth.isLoggedIn);
-    console.log(token);
 
 
     const fetchNotices = async (req, key) => {

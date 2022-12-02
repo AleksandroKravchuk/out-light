@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import {
   AddToFavoriteBtn, Button, CardDetailInfo, CardDetailsContainer,
   CardImageContainer, CardInfoContainer, Category, NoticeCategoryItemStyled, Photo, RemoveFromFavoriteBtn, Title
-} from './NoticeCategoryItem.styled';
+} from './NoticesCategoryItem.styled';
 
 let category = '';
 let photo;
@@ -16,7 +16,7 @@ let photo;
 export const NoticeCategoryItem = ({ notice, onClick }) => {
 
   const [showModal, setShowModal] = useState(false);
-  
+
   const userId = useSelector(state => state.auth.id);
 
   const { addToFavorite, removeFromFavorite } = response;
@@ -40,7 +40,7 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
 
   if (notice.photo) {
     // photo= notice.photo;
-    photo = `https://team-api-blended2.herokuapp.com/${notice.photo}`
+    photo = `https://team-api-server-outlight.onrender.com/${notice.photo}`
 
   } else {
     photo =
@@ -100,7 +100,7 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
                   {/* // : (<RemoveFromFavoriteBtn onClick={handleBtnClick}>
                   //         <RemoveIcon width="19.5" height="21" />
                   //     </RemoveFromFavoriteBtn>) */}
-                
+
             </CardImageContainer>
             <CardInfoContainer>
                 <Title>{notice.title}</Title>

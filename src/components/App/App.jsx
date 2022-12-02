@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 
 
-import NoticesCategoryList from 'components/Notices/NoticesCategoryList/NoticesCategoryList';
+// import NoticesCategoryList from 'components/Notices/NoticesCategoryList/NoticesCategoryList';
 
 // const AsyncMainPage = lazy(() => import('components/MainPage/MainPage'));
 const AsyncNewsPage = lazy(() => import('pages/NewsPages/NewsPages'));

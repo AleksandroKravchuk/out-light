@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
-import { NoticeCategoryItem } from "components/Notices/NoticeCategoryItem/NoticeCategoryItem";
+import { NoticeCategoryItem } from "components/Notices/NoticesCategoryItem/NoticesCategoryItem";
 import { response } from "api";
 import { Gallery } from "./NoticesCategoryList.styled";
 import { useSelector } from "react-redux";

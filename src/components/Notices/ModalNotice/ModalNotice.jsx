@@ -12,17 +12,21 @@ import {
 
 
 export const ModalNotice = ({ notice, onClose}) => {
-
+let photos;
 
     const { title, name, birth, breed,
-        place, sex, photo, price,
+        location, sex, photo, price,
         category, comments, owner,
     } = notice;
 
-    if (!photo) {
-        photo =
-            'https://t4.ftcdn.net/jpg/03/08/68/19/360_F_308681935_VSuCNvhuif2A8JknPiocgGR2Ag7D1ZqN.jpg';
-    };
+    if (notice.photo) {
+    // photo= notice.photo;
+    photos = `https://team-api-server-outlight.onrender.com/${notice.photo}`
+
+  } else {
+    photos =
+      'https://t4.ftcdn.net/jpg/03/08/68/19/360_F_308681935_VSuCNvhuif2A8JknPiocgGR2Ag7D1ZqN.jpg';
+  }
 
     return (
         <>
@@ -34,7 +38,7 @@ export const ModalNotice = ({ notice, onClose}) => {
                 </CloseModal>
                 <Description>
                     <CardImageContainer>
-                        <Photo src={photo} alt={name} />
+                        <Photo src={photos} alt={name} />
                         <Category>{category}</Category>
                     </CardImageContainer>
                     <InfoContainer>
@@ -43,7 +47,7 @@ export const ModalNotice = ({ notice, onClose}) => {
                             <Li><Key>Name:</Key><Value>{name}</Value></Li>
                             <Li><Key>Birthday:</Key><Value>{birth}</Value></Li>
                             <Li><Key>Breed:</Key><Value>{breed}</Value></Li>
-                            <Li><Key>Place:</Key><Value>{place}</Value></Li>
+                            <Li><Key>Place:</Key><Value>{location}</Value></Li>
                             <Li><Key>The sex:</Key><Value>{sex}</Value></Li>
                             <Li><Key>Email:</Key><Value>{owner.email}</Value></Li>
                             <Li><Key>Phone:</Key><Value>{owner.phone}</Value></Li>

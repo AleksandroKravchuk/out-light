@@ -11,7 +11,7 @@ const NoticesCategoryList = () => {
 
     return (
         <>
-            {notices != []
+            {notices !== []
                 ? (<Gallery>
                         {notices.map(notice => <NoticeCategoryItem key={notice._id} notice={notice} onClick={handleFavoriteClick}/>)}
                     </Gallery >)

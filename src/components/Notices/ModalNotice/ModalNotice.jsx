@@ -15,7 +15,7 @@ export const ModalNotice = ({ notice, onClose}) => {
 let photos;
 
     const { title, name, birth, breed,
-        location, sex, photo, price,
+        location, sex, price,
         category, comments, owner,
     } = notice;
 

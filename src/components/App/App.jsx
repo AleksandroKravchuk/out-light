@@ -25,7 +25,7 @@ const AsyncNoticesCategoryList = lazy(() =>
 // const AsyncNoticesSearch = lazy(() => import('components/NoticesSearch/NoticesSearch'));
 const AsyncRegisterPage = lazy(() => import('pages/LoginPage/RegisterPage'));
 const AsyncLoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
-// const AsyncUserPage = lazy(() => import('pages/UserPage/UserPage'));
+const AsyncUserPage = lazy(() => import('pages/UserPage/UserPage'));
 const AsyncOurFriendsPage = lazy(() =>
   import('pages/OurFriendsPage/OurFriendsPage')
 );
@@ -58,9 +58,9 @@ const App = () => {
 
 
 
-        {/* <Route path="user" element={<AsyncUserPage />} />
+        <Route path="user" element={<AsyncUserPage />} />
 
-        <Route path="friends" element={<AsyncOurFriendsPage />} /> */}
+
 
 
       {/* <Route path="*" element={<NotFound />} /> */}

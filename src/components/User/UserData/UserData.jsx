@@ -7,7 +7,7 @@ import {
 import { UserDataItem } from 'components/User/UserDataItem/UserDataItem';
 import editPhoto from 'icons/editPhoto.svg';
 import { Avatar, EditPhotoBtn, ImgUser, UserInfo } from './UserData.styled';
-import { ROUTES } from 'routes/routes';
+
 import { response } from 'api';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -19,13 +19,12 @@ export const UserData = () => {
   const [updateAvatar] = useUpdateAvatarMutation();
 
   const token = useSelector(state => state.auth.token)
-  console.log(token)
+
 
   const {getUser} = response;
 
   const fetchUser = async (token) => {
     const res = await getUser(token);
-    console.log(res);
     setUser(res);
   };
 
@@ -75,7 +74,7 @@ export const UserData = () => {
 
     const AUTH_TOKEN = 'Bearer ';
 
-    axios.defaults.baseURL = ROUTES.BASE_URL;
+    axios.defaults.baseURL = 'https://team-api-server-outlight.onrender.com';
     axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
     axios.defaults.headers.patch['content-type'] = 'multipart/form-data';
 
@@ -100,7 +99,7 @@ export const UserData = () => {
   return (
     <UserInfo>
       <Avatar>
-        <ImgUser src={`${ROUTES.BASE_URL}/${logo}`} alt={name} />
+        <ImgUser src={`https://team-api-server-outlight.onrender.com/${logo}`} alt={name} />
         <form encType="multipart/form-data" onSubmit={handleSubmit}>
           <input
             type="file"

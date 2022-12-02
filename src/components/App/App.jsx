@@ -21,7 +21,7 @@ const AsyncNewsPage = lazy(() => import('pages/NewsPages/NewsPages'));
 // const AsyncOwnNoticesPage = lazy(() => import('pages/NoticesPage/OwnNoticesPage'));
 // const AsyncPrivateRoute = lazy(() => import('components/PrivateRoutes/PrivateRoutes'));
 // const AsyncNoticesSearch = lazy(() => import('components/NoticesSearch/NoticesSearch'));
-const AsyncRegisterPage = lazy(() => import('pages/RegisterPage/RegisterPage'));
+const AsyncRegisterPage = lazy(() => import('pages/LoginPage/RegisterPage'));
 const AsyncLoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
 // const AsyncUserPage = lazy(() => import('pages/UserPage/UserPage'));
 // const AsyncOurFriendsPage = lazy(() =>

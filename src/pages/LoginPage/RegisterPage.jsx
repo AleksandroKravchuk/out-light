@@ -6,10 +6,26 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   useAddUserInfoMutation, useRegisterUserMutation
 } from 'redux/auth/authOperations';
+import MainContainer from "components/commonStyles/Container.styled";
 import {
-  BackBtn, Button, Container, EyeContainer,
-  EyeSymbol, FirstContainer, Form, ImageContainer, Input, P, Section, Span, Title
-} from './RegisterPage.styled';
+  Input,
+  Title,
+  Container,
+  Form,
+  Button,
+  P,
+  Span,
+  ImageContainer,
+  Section,
+  EyeContainer,
+  EyeSymbol,
+  BackBtn,
+FirstContainer,
+} from './LoginPage.styled';
+// import {
+//   BackBtn, Button, Container, EyeContainer,
+//   EyeSymbol, FirstContainer, Form, ImageContainer, Input, P, Section, Span, Title
+// } from './RegisterPage.styled';
 
 const RegisterPage = () => {
   const location = useLocation();
@@ -127,10 +143,11 @@ const RegisterPage = () => {
 
   return (
     <>
-      <Section>
+      <MainContainer>
+ <Section>
         <ImageContainer>
           {page === 0 && (
-            <FirstContainer>
+            <Container>
               <Title>Registration</Title>
 
               <Form onClick={handleSubmit}>
@@ -198,7 +215,7 @@ const RegisterPage = () => {
                   </li>
                 </ul>
               </Form>
-            </FirstContainer>
+            </Container>
           )}
           {page > 0 && (
             <Container>
@@ -251,6 +268,9 @@ const RegisterPage = () => {
           )}
         </ImageContainer>
       </Section>
+
+      </MainContainer>
+
     </>
   );
 };

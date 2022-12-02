@@ -40,7 +40,7 @@ export const NavigationLink = styled(NavLink)`
   }
 &.active{
  color: #f59256;
-    text-decoration-line: underline;
+    /* text-decoration-line: underline; */
     transform: scale(1.1);
 }
   /* &:hover,
@@ -50,7 +50,7 @@ export const NavigationLink = styled(NavLink)`
 `
 export const Navigation = styled.nav`
 background-color: #FDF7F2;
- pointer-events: none;
+ /* pointer-events: none; */
 
    @media screen and (max-width: 1279px) {
   text-align: center;
@@ -77,6 +77,8 @@ width: 100%;
     }
     @media screen and (min-width: 1280px) {
       position: relative;
+       visibility: visible;
+
     }
 
 

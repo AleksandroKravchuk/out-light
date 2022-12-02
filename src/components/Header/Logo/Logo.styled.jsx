@@ -1,6 +1,7 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
-export const Paragraph = styled.p`
+export const Paragraph = styled(Link)`
   font-family: 'Poppins';
   font-weight: 700;
   font-size: 28px;

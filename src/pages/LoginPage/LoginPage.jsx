@@ -13,6 +13,7 @@ import {
   EyeContainer,
   EyeSymbol,
 } from './LoginPage.styled';
+import MainContainer from "components/commonStyles/Container.styled";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
 import Notiflix from 'notiflix';
@@ -75,7 +76,8 @@ const LoginPage = () => {
 
   return (
     <>
-      <Section>
+      <MainContainer>
+              <Section>
         <ImageContainer>
           <Container>
             <Title>Login</Title>
@@ -117,6 +119,8 @@ const LoginPage = () => {
           </Container>
         </ImageContainer>
       </Section>
+      </MainContainer>
+
     </>
   );
 };

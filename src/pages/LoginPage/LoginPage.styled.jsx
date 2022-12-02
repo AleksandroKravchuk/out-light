@@ -9,55 +9,62 @@ export const Section = styled.section`
   }
 `;
 export const ImageContainer = styled.div`
+background-color: #FDF7F2;
+position:relative;
   background-position: bottom;
   position: absolute;
-  top: 70px;
-  left: 0px;
+  top: 0px;
+  left:-7%;
+
   background-image: url(${wavesPhone});
   background-repeat: no-repeat;
   background-size: contain;
-  width: 100vw;
-  min-height: 100vh;
+  width:114%;
+  height: 100vh;
 
   @media screen and (min-width: 480px) and (max-width: 767px) {
-    top: 100px;
-    left: -55px;
+    top: 0px;
+    left: -7%;
+width:114%;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
-    top: 400px;
-    left: -55px;
+    top: 0px;
+    left: -65px;
+    width: 120%;
     background-image: url(${wavesTablet});
   }
   @media screen and (min-width: 1280px) {
-    top: 20px;
-    left: -152px;
+    top: 0px;
+    left: -30px;
     background-image: url(${Waves});
   }
 `;
 export const Container = styled.div`
   margin-top: 30px;
-
+position:absolute;
+left:10%
   @media screen and (min-width: 480px) and (max-width: 767px) {
     width: 480px;
-    margin: 0 auto;
+
   }
 
   @media screen and (min-width: 768px) {
-    top: -300px;
-    left: 110px;
-    position: absolute;
+    top: -10px;
+    left: 10%;
+    /* transform:translateX(-50%) */
+    /* position: absolute; */
     width: 608px;
-    height: 517px;
+    /* height: 517px; */
     background: #ffffff;
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: 40px;
   }
   @media screen and (min-width: 1280px) {
-    top: 20px;
-    left: 450px;
+    top: 70px;
+    left: 25%;
     width: 618px;
-    height: 449px;
+    /* height: 449px; */
   }
 `;
 
@@ -162,6 +169,7 @@ export const P = styled.p`
   letter-spacing: 0.04em;
   color: rgba(17, 17, 17, 0.6);
   margin-top: 10px;
+  margin-bottom:20px;
 `;
 export const Span = styled.span`
   color: rgba(48, 145, 235, 1);
@@ -213,4 +221,28 @@ export const EyeSymbol = styled.span`
 
 export const EyeContainer = styled.div`
   position: relative;
+`;
+export const FirstContainer = styled.div`
+  margin-top: 30px;
+
+  @media screen and (min-width: 480px) and (max-width: 767px) {
+    margin: 0 auto;
+    width: 480px;
+  }
+  @media screen and (min-width: 768px) {
+    top: -300px;
+    left: 100px;
+    position: absolute;
+    width: 608px;
+    height: 517px;
+    background: #ffffff;
+    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+    border-radius: 40px;
+  }
+  /* @media screen and (min-width: 1280px) {
+    top: 20px;
+    left: 450px;
+    width: 618px;
+    height: 541px;
+  } */
 `;

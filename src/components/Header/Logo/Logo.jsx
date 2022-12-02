@@ -4,7 +4,7 @@ const Logo = () => {
 
     return (
         <>
-            <Paragraph>pe<AccentSpan>t</AccentSpan>ly</Paragraph>
+            <Paragraph to={'/'}>pe<AccentSpan>t</AccentSpan>ly</Paragraph>
         </>
     )
 }

@@ -5,10 +5,12 @@ export const Nav = ({set}) => {
   const location = useLocation();
 
   return (
-    <Navigation className={set && 'shown'}>
+    <>
+
+      <Navigation className={set && 'shown'}>
+
       <List>
         <NavigationItem>
-
           <NavigationLink to={'/news'} state={{ from: location }}>
             News
           </NavigationLink>
@@ -26,6 +28,8 @@ export const Nav = ({set}) => {
         </NavigationItem>
       </List>
     </Navigation>
+    </>
+
   );
 };
 

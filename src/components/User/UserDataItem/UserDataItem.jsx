@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Notiflix from 'notiflix';
 import edit from 'icons/edit.svg';
 import done from 'icons/done.svg';
 import { useUpdateUserInfoMutation } from 'redux/auth/authOperations';
@@ -52,7 +53,13 @@ export const UserDataItem = ({ user }) => {
   };
    const handleUpdateBirthday= evt => {
      setUpdateBirthday(!updateBirthday);
-     updateUserInfo(updateUserValue ).then(err=>console.log(err))
+     updateUserInfo(updateUserValue).then(err => {
+        if (err.error){
+        return Notiflix.Notify.failure(
+          `${err.error.data.message}`
+        );
+      }
+     })
   };
   const handleUpdateCity= evt => {
     setUpdateCity(!updateCity);

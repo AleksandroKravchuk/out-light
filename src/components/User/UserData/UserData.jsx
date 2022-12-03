@@ -40,16 +40,17 @@ const { logo, name } = user;
     if (user) {
     avatar = await logo.slice(0, 4);
 return avatar
-}
+    }
+    console.log(user)
   }
-
   return (
     <UserInfo>
       <Avatar>
+        {/* {user&&!file ?<ImgUser src={'  https://s.gravatar.com/avatar/0cfe0ef3a357503c4a4538414b870ca1?s=100&r=x&d=retro'} alt={name}/>: <ImgUser src={`${BASE_URL}/${logo}`} alt={name}/>} */}
 
-        { addLogo()==="http"?   <ImgUser src={`${logo}`} alt={name} />: <ImgUser src={`${BASE_URL}/${logo}`} alt={name} />}
+        {!user|| addLogo()==="http"?   <ImgUser src={'  https://s.gravatar.com/avatar/0cfe0ef3a357503c4a4538414b870ca1?s=100&r=x&d=retro'}alt={name} />: <ImgUser src={`${BASE_URL}/${logo}`} alt={name} />}
 
-
+{/* { user&&   <ImgUser src={`${BASE_URL}/${logo}`} alt={name} />} */}
         <form encType="multipart/form-data" onSubmit={handleChange}>
 
           <EditPhotoBtn type="button">

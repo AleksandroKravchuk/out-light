@@ -40,9 +40,9 @@ export const NoticeCategoryItemStyled = styled.li`
             margin-right: 0;
         };
 
-        &:nth-last-child(-n + 4) {
+        /* &:nth-last-child(-n + 4) {
             margin-bottom: 0;
-        };
+        }; */
     };
 `;
 

@@ -43,6 +43,7 @@ const authSlice = createSlice({
       authApi.endpoints.logOutUser.matchFulfilled,
       (state, _) => {
         state.user = {
+          token: null,
           name: null,
           email: null,
           city: null,

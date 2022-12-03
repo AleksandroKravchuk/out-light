@@ -34,7 +34,7 @@ export const ImgUser = styled.img`
   }
 `;
 
-export const EditPhotoBtn = styled.button`
+export const EditPhotoBtn = styled.label`
   font-weight: 400;
   font-size: 12px;
   line-height: 22px;
@@ -56,3 +56,13 @@ export const EditPhotoBtn = styled.button`
     margin-left: 152px;
   }
 `;
+// export const Input = styled.input`
+// ::after{
+//   content:'';
+//   background-image:url(${wavesPhone});
+//  background-repeat: no-repeat;
+//   /* background-size: contain; */
+//    background-position: bottom;
+// }
+
+// `;

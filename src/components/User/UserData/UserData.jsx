@@ -7,56 +7,59 @@ import {
 import { UserDataItem } from 'components/User/UserDataItem/UserDataItem';
 import editPhoto from 'icons/editPhoto.svg';
 import { Avatar, EditPhotoBtn, ImgUser, UserInfo } from './UserData.styled';
-import { useSelector } from 'react-redux';
+
 
 export const UserData = () => {
-    const {data, getUserInfo } = useGetUserInfoQuery();
+  const BASE_URL='https://team-api-server-outlight.onrender.com'
+    const {data} = useGetUserInfoQuery();
   const [updateAvatar] = useUpdateAvatarMutation();
-  const [file, setFile] = useState({});
-  const [user, setUser] = useState({});
+  const [file, setFile] = useState(false);
+  const [user, setUser] = useState('');
   const inputRef = useRef(null);
-  const [selectedFile, setSelectedFile] = useState();
-  const [isFilePicked, setIsFilePicked] = useState(false);
 
 
   useEffect(() => {
-    if (!data) {
+    if (!data && !file) {
       return
     }
     setUser(data.data.user)
-},[data])
-
+  }, [data, file])
 
   const handleChange = evt => {
-    if (!evt.target.files) {
-      return;
-    }
-    setSelectedFile(evt.target.files[0]);
-    // console.log(evt.target.files[0]);
-    setIsFilePicked(true);
-  };
-
-  const handleSubmit = evt => {
     evt.preventDefault();
-    const formData = new FormData();
-    formData.append('File', selectedFile);
+       const formData = new FormData();
+    formData.append('avatar', evt.target.files[0]);
+      updateAvatar(formData)
+      setFile(true)
 
+
+  };
+const { logo, name } = user;
+  let avatar;
+  const addLogo =async () => {
+    if (user) {
+    avatar = await logo.slice(0, 4);
+return avatar
+}
   }
 
-  const { logo, name } = user;
   return (
     <UserInfo>
       <Avatar>
-        <ImgUser src={user.logo} alt={name} />
-        <form encType="multipart/form-data" onSubmit={handleSubmit}>
-          <input
+
+        { addLogo()==="http"?   <ImgUser src={`${logo}`} alt={name} />: <ImgUser src={`${BASE_URL}/${logo}`} alt={name} />}
+
+
+        <form encType="multipart/form-data" onSubmit={handleChange}>
+
+          <EditPhotoBtn type="button">
+             <input
             type="file"
             ref={inputRef}
             multiple
             onChange={handleChange}
             style={{ display: 'none' }}
           />
-          <EditPhotoBtn onClick={() => inputRef.current?.click()}>
             <img src={editPhoto} alt="addPet" />
             Edit photo
           </EditPhotoBtn>

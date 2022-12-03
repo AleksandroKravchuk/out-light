@@ -33,22 +33,34 @@ export const UserDataItem = ({ user }) => {
     setBirthdayUser(birthday);
     setCityUser(city);
     setPhoneUser(phone);
-},[birthday,name,city,phone,email])
+  }, [birthday, name, city, phone, email])
 
+    const updateUserValue = {
+      name: nameUser,
+      email: emailUser,
+      birthday: birthdayUser,
+      phone: phoneUser,
+      city: cityUser,
+    };
   const handleUpdateName = evt => {
     setUpdateName(!updateName);
+    updateUserInfo(updateUserValue )
   };
   const handleUpdateEmail= evt => {
     setUpdateEmail(!updateEmail);
+    updateUserInfo(updateUserValue )
   };
    const handleUpdateBirthday= evt => {
-    setUpdateBirthday(!updateBirthday);
+     setUpdateBirthday(!updateBirthday);
+     updateUserInfo(updateUserValue ).then(err=>console.log(err))
   };
   const handleUpdateCity= evt => {
     setUpdateCity(!updateCity);
+    updateUserInfo(updateUserValue )
   };
     const handleUpdatePhone= evt => {
-    setUpdatePhone(!updatePhone);
+      setUpdatePhone(!updatePhone);
+      updateUserInfo(updateUserValue )
   };
   const handleChangeValue = evt => {
     const { name, value } = evt.currentTarget;
@@ -78,17 +90,9 @@ export const UserDataItem = ({ user }) => {
     }
   };
 
+
   const handleSubmit = evt => {
     evt.preventDefault();
-    const updateUserValue = {
-      name: nameUser,
-      email: emailUser,
-      birthday: birthdayUser,
-      phone: phoneUser,
-      city: cityUser,
-    };
-
-updateUserInfo(updateUserValue )
     setUpdateEmail(!updateEmail);
     setUpdateName(!updateName);
     setUpdateBirthday(!updateBirthday);
@@ -194,7 +198,7 @@ updateUserInfo(updateUserValue )
           <>
             <FormUpdate onSubmit={handleSubmit}>
               <InputUpdate
-                type="text"
+                  type="phone"
                 name="phoneUser"
                 value={phoneUser}
                 onChange={handleChangeValue}

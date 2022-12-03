@@ -1,7 +1,7 @@
 import Notiflix from 'notiflix';
 import { useState } from 'react';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {
   useAddUserInfoMutation, useRegisterUserMutation
@@ -20,7 +20,6 @@ import {
   EyeContainer,
   EyeSymbol,
   BackBtn,
-FirstContainer,
 } from './LoginPage.styled';
 // import {
 //   BackBtn, Button, Container, EyeContainer,
@@ -34,15 +33,15 @@ const RegisterPage = () => {
   const [confirmedPassword, setConfirmedPassword] = useState('');
   const [name, setName] = useState('');
   const [city, setCity] = useState('');
-  const [phone, setPhone] = useState('');
-  const [page, setPage] = useState(0);
+  const [phone, setPhone] = useState('+380');
+  const [page, setPage] = useState(true);
 
   const navigate = useNavigate();
 
-  const isId = useSelector(state => state.auth.user.id);
+  // const isId = useSelector(state => state.auth.user.id);
 
   const [registerNewUser] = useRegisterUserMutation();
-  const [addUserInfo] = useAddUserInfoMutation();
+  // const [addUserInfo] = useAddUserInfoMutation();
 
   // To Hide/Show password
   const [showPassword, setshowPassword] = useState(false);
@@ -51,7 +50,6 @@ const RegisterPage = () => {
 
   const handleChange = event => {
     const { name, value } = event.currentTarget;
-
     switch (name) {
       case 'confirmedPassword':
         setConfirmedPassword(value);
@@ -78,16 +76,23 @@ const RegisterPage = () => {
 
   const createUser = async () => {
     const newUser = {
-      email,
-      password,
+      email, password, name, city, phone
     };
-    await registerNewUser(newUser);
+    registerNewUser(newUser).then((err) => {
+      console.log(err)
+      if (err.error){
+        return Notiflix.Notify.failure(
+          `${err.error.data.message}`
+        );
+      }
+navigate('/user', { replace: true });
+    })
+
   };
 
 
   const handleSubmit = async event => {
     event.preventDefault();
-
     if (email === '' || !email.includes('@')) {
       return Notiflix.Notify.failure('Please, enter a valid email!');
     }
@@ -97,22 +102,23 @@ const RegisterPage = () => {
         'Please, enter a valid password without spaces!'
       );
     }
-
+if (password.length <7) {
+      return Notiflix.Notify.failure(
+        'Password must be between 7 and 32 characters long'
+      );
+    }
     if (confirmedPassword !== password || confirmedPassword === '') {
       return Notiflix.Notify.failure('Passwords do not match!');
     }
-
-    setPage(page + 1);
-    createUser();
+    setPage(false);
   };
-  const addUser = async () => {
-    const addInfo = { isId, name, city, phone };
+  // const addUser = async () => {
+  //   const addInfo = { email,password,name, city, phone };
 
-    await addUserInfo(addInfo);
-  };
+  //   await addUserInfo(addInfo);
+  // };
   const handlePatchSubmit = event => {
     event.preventDefault();
-
     if (!/^[a-zA-Z]{2,30}/g.test(name)) {
       return Notiflix.Notify.info('Name may only include letters');
     }
@@ -136,9 +142,8 @@ const RegisterPage = () => {
         'Your phone number must start with + and consist of 12 numbers'
       );
     }
-    addUser();
-
-    navigate('/user', { replace: true });
+    createUser();
+    // navigate('/user', { replace: true });
   };
 
   return (
@@ -146,11 +151,11 @@ const RegisterPage = () => {
       <MainContainer>
  <Section>
         <ImageContainer>
-          {page === 0 && (
+          {page  && (
             <Container>
               <Title>Registration</Title>
 
-              <Form onClick={handleSubmit}>
+              <Form onSubmit={handleSubmit}>
                 <div>
                   <Input
                     type="email"
@@ -168,7 +173,7 @@ const RegisterPage = () => {
                     onChange={handleChange}
                     value={password}
                     placeholder="Password"
-                    pattern="[^\s]"
+                    // pattern="[^\s]"
                     minlength="7"
                     maxlength="32"
                     required
@@ -195,16 +200,16 @@ const RegisterPage = () => {
                 </EyeContainer>
                 <ul>
                   <li>
-                    <Button type="submit">
-                      {page === 0 || page < 1 ? 'Next' : 'Register'}
+                    <Button type="submit" >
+                      {page ? 'Next' : 'Register'}
                     </Button>
                   </li>
 
-                  {page > 0 && (
+                  {/* {!page && (
                     <li>
-                      <BackBtn onClick={() => setPage(page - 1)}>Back</BackBtn>
+                      <BackBtn onClick={() => setPage(true)}>Back</BackBtn>
                     </li>
-                  )}
+                  )} */}
                   <li>
                     <P>
                       Already have an account?
@@ -217,7 +222,7 @@ const RegisterPage = () => {
               </Form>
             </Container>
           )}
-          {page > 0 && (
+          {!page && (
             <Container>
               <Title>Registration</Title>
 
@@ -246,10 +251,10 @@ const RegisterPage = () => {
                 <ul>
                   <li>
                     <Button onClick={handlePatchSubmit}>
-                      {page === 0 || page < 1 ? 'Next' : 'Register'}
+                      {page ? 'Next' : 'Register'}
                     </Button>
                   </li>
-                  {page > 0 && (
+                  {!page&& (
                     <li>
                       <BackBtn onClick={() => setPage(page - 1)}>Back</BackBtn>
                     </li>

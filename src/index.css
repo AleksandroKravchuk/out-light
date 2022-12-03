@@ -1,4 +1,3 @@
-
 @import 'normalize.css'; /* bring in normalize.css styles */
 /* *::after,
 *::before, */
@@ -17,7 +16,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--main-background);
   cursor: default;
-  background-color: white;
 }
 
 code {
@@ -45,3 +43,4 @@ li {
 a {
   text-decoration: none;
 }
+

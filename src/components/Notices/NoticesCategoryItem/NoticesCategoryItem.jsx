@@ -40,7 +40,7 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
 
   if (notice.photo) {
     // photo= notice.photo;
-    photo = `https://team-api-server-outlight.onrender.com/${notice.photo}`
+    photo = `https://blende2.herokuapp.com/${notice.photo}`
 
   } else {
     photo =

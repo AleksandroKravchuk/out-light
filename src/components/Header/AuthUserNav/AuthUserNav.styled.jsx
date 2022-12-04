@@ -30,6 +30,13 @@ export const StyledColoredLink = styled(Link)`
   font-size: 14px;
   line-height: calc(19 / 14);
   letter-spacing: 0.04em;
+  /* @media screen and (min-width: 768px) and (max-width: 1279px) {
+   position:absolute;
+   top: 100px;
+   left: 50%;
+   transform:translateX(-50%);
+   z-index:500;
+  } */
 `;
 
 export const StyledSpan = styled.span`

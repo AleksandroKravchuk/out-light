@@ -45,15 +45,28 @@ export const UserDataItem = ({ user }) => {
     };
   const handleUpdateName = evt => {
     setUpdateName(!updateName);
-    updateUserInfo(updateUserValue )
+    updateUserInfo(updateUserValue ).then(err => {
+        if (err.error){
+        return Notiflix.Notify.failure(
+          `${err.error.data.message}`
+        );
+      }
+     })
   };
   const handleUpdateEmail= evt => {
     setUpdateEmail(!updateEmail);
-    updateUserInfo(updateUserValue )
+    updateUserInfo(updateUserValue ).then(err => {
+        if (err.error){
+        return Notiflix.Notify.failure(
+          `${err.error.data.message}`
+        );
+      }
+     })
   };
    const handleUpdateBirthday= evt => {
      setUpdateBirthday(!updateBirthday);
-     updateUserInfo(updateUserValue).then(err => {
+     updateUserInfo(updateUserValue)
+       .then(err => {
         if (err.error){
         return Notiflix.Notify.failure(
           `${err.error.data.message}`
@@ -63,11 +76,23 @@ export const UserDataItem = ({ user }) => {
   };
   const handleUpdateCity= evt => {
     setUpdateCity(!updateCity);
-    updateUserInfo(updateUserValue )
+    updateUserInfo(updateUserValue ).then(err => {
+        if (err.error){
+        return Notiflix.Notify.failure(
+          `${err.error.data.message}`
+        );
+      }
+     })
   };
     const handleUpdatePhone= evt => {
       setUpdatePhone(!updatePhone);
-      updateUserInfo(updateUserValue )
+      updateUserInfo(updateUserValue ).then(err => {
+        if (err.error){
+        return Notiflix.Notify.failure(
+          `${err.error.data.message}`
+        );
+      }
+     })
   };
   const handleChangeValue = evt => {
     const { name, value } = evt.currentTarget;

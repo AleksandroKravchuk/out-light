@@ -54,10 +54,10 @@ background-color: #FDF7F2;
 
    @media screen and (max-width: 1279px) {
   text-align: center;
-width: 100%;
+width: 110%;
     position: absolute;
     top: 40px;
-    right: 0;
+    left: 0
     height: 0;
     padding-top: 108px;
     opacity: 0;
@@ -75,6 +75,13 @@ width: 100%;
       pointer-events: auto;
     }
     }
+     /* @media screen and (min-width: 1280px) {
+       &.shown {
+
+      width: 110%;
+
+    }
+    } */
     @media screen and (min-width: 1280px) {
       position: relative;
        visibility: visible;

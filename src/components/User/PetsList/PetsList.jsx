@@ -6,7 +6,7 @@ import { useDeleteUserPetMutation } from 'redux/auth/authOperations';
 import { Item, Text, Image, DeleteBtn, DeleteSvg } from './PetsList.styled';
 
 export const PetsList = ({ pets }) => {
-  const baseUrl = 'https://team-api-server-outlight.onrender.com';
+  const baseUrl = 'https://blende2.herokuapp.com';
   const [deleteUserPet] = useDeleteUserPetMutation();
 
   return (

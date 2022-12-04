@@ -21,7 +21,7 @@ let photos;
 
     if (notice.photo) {
     // photo= notice.photo;
-    photos = `https://team-api-server-outlight.onrender.com/${notice.photo}`
+    photos = `https://blende2.herokuapp.com/${notice.photo}`
 
   } else {
     photos =

@@ -17,8 +17,10 @@ import {
 import { ReactComponent as AddIcon } from 'icons/addPet.svg';
 import Modal from 'components/Modal/Modal';
 import ModalAddNotice from 'components/Notices/ModalAddNotice/ModalAddNotice';
+import Notiflix from 'notiflix';
 
 const NoticesPage = () => {
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 const [showModal, setShowModal] = useState(false);
     const [query, setQuery] = useState(null);
     const [ownQuery, setOwnQuery] = useState(null);
@@ -96,7 +98,9 @@ const [showModal, setShowModal] = useState(false);
     const toggleModal = evt => {
         setShowModal(!showModal);
     }
-
+     const errorAdd = () => {
+  return Notiflix.Notify.failure('You are not authorized');
+}
     useEffect(() => {
 
         if (!count || query) {
@@ -139,12 +143,17 @@ const [showModal, setShowModal] = useState(false);
             </Category>
 
            <AddPetBlock>
-          <AddPet>Add pet</AddPet>
-          <LinkAddPet onClick={toggleModal}>
+            <AddPet>Add pet</AddPet>
+            {isLoggedIn?(<LinkAddPet onClick={toggleModal}>
             <Icon>
               <AddIcon width="100%" height="100%" />
             </Icon>
-          </LinkAddPet>
+          </LinkAddPet>):(<LinkAddPet onClick={errorAdd}>
+            <Icon>
+              <AddIcon width="100%" height="100%" />
+            </Icon>
+          </LinkAddPet>) }
+
         </AddPetBlock>
             </Nav>
              {showModal && (

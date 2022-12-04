@@ -1,13 +1,17 @@
 import React from 'react';
 import Notiflix from 'notiflix';
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { ReactComponent as Male } from "../../../icons/male.svg";
 import { ReactComponent as Female } from "../../../icons/female.svg";
 import { ReactComponent as CloseCross } from "../../../icons/cross.svg";
 import { useCreateNoticeMutation} from 'redux/auth/authOperations';
 // import { ReactComponent as DefaultCross } from "../../../icons/default-cross.svg";
-import { Input, Label, Form, Container, Title, P, Span, ButtonCategory, ButtonsCategoryContainer, ButtonsSubmitColor, ButtonsSubmitWhite, ButtonsSubmitContainer, ButtonsSexPet, ButtonsSexPetContainer, Textarea, InputFile, SpanSexPet, CloseButton } from "./ModalAddNotice.styled";
+import { Input, Label, Form, Container, Title, P, Span, ButtonCategory, ButtonsCategoryContainer, ButtonsSubmitColor, ButtonsSubmitWhite, ButtonsSubmitContainer, ButtonsSexPet, ButtonsSexPetContainer, Textarea, InputFile, SpanSexPet, CloseButton, AddFileInputContainer,
+  AddFileInput,
+  UploadImageContainer,
+  AddImageButton,
+  PlusIcon,
+  PetImage, } from "./ModalAddNotice.styled";
 import styled from 'styled-components';
 
 const MaleSvg = styled(Male)`
@@ -35,7 +39,7 @@ height: 15px;
 `;
 
 const ModalAddNotice = ({onClose}) => {
-const token = useSelector(state => state.token);
+
 const [createNotice] = useCreateNoticeMutation();
     const [page, setPage] = useState(true);
     const [title, setTitle] = useState('');
@@ -81,19 +85,6 @@ const [createNotice] = useCreateNoticeMutation();
         }
     };
 
-  const body = {
-    title,petName,birth,breed, category, comments,sex,location,price
-  }
-  console.log(body )
-    // const handleSubmit = e => {
-    //     // e.preventDefault();
-    //     // if (modalState === MODAL_STATE.IDLE) {
-    //     //     return setModalState(MODAL_STATE.UPLOAD_IMAGE);
-    //     // }
-    //     // if (modalState === MODAL_STATE.UPLOAD_IMAGE) {
-    //     //     return setModalState(MODAL_STATE.DONE);
-    //     // }
-    // };
   const handleAddInfo = e => {
       if (title === '' ||petName === ''||birth === ''||breed === '' ) {
       return Notiflix.Notify.failure('All fields must be filled');
@@ -118,26 +109,16 @@ const [createNotice] = useCreateNoticeMutation();
   formData.append('comments', comments);
   formData.append('photoNotices', photoPet);
   const submitForm = e => {
+      if (location === '' ||photoPet==='' ) {
+      return Notiflix.Notify.failure('All fields must be filled');
+      }
+         if (sex === '' ) {
+      return Notiflix.Notify.failure('Please choose sex');
+    }
     e.preventDefault();
-    createNotice(formData)
+    createNotice(formData);
+    onClose();
   }
-  //  const reset = () => {
-  //   setTitle('');
-  //    setPetName('');
-  //    setBirth('');
-  //    setBreed('');
-  //    setCategory('');
-  // };
-    // useEffect(() => {
-    //     // if (modalState === MODAL_STATE.DONE) {
-    //     //     addPet({ name: title, petName, birth, breed, category, comments, sex, location, price, photoPet }, token)
-    //     //     onClose();
-    //     // }
-    // }, [modalState, title, petName, birth, breed, category, comments, sex, location, price, photoPet, token, onClose]);
-
-    // const selectFile = e => {
-    //     setPhotoPet(e.target.files[0]);
-    // };
 
     return (
         <>
@@ -151,7 +132,7 @@ const [createNotice] = useCreateNoticeMutation();
                 <Form onSubmit={handleAddInfo}>
                 <ButtonsCategoryContainer>
                     <ButtonCategory type="button" onClick={()=>setCategory('lost-found')}>lost/found</ButtonCategory>
-                    <ButtonCategory type="button" onClick={()=>setCategory('In good hands')}>In good hands</ButtonCategory>
+                    <ButtonCategory type="button" onClick={()=>setCategory('in good hands')}>In good hands</ButtonCategory>
                     <ButtonCategory type="button" onClick={()=>setCategory('sell')}>sell</ButtonCategory>
                 </ButtonsCategoryContainer>
                     <Label>Tittle of ad
@@ -207,8 +188,8 @@ const [createNotice] = useCreateNoticeMutation();
 
                <Label>The sex<Span>*</Span>:
                         <ButtonsSexPetContainer>
-                            <ButtonsSexPet type="button" onClick={()=>setSex('Male')}> <MaleSvg /> <SpanSexPet>Male</SpanSexPet></ButtonsSexPet>
-                            <ButtonsSexPet type="button" onClick={()=>setSex('Female')}> <FemaleSvg/> <SpanSexPet>Female</SpanSexPet></ButtonsSexPet>
+                            <ButtonsSexPet type="button" onClick={()=>setSex('male')}> <MaleSvg /> <SpanSexPet>Male</SpanSexPet></ButtonsSexPet>
+                            <ButtonsSexPet type="button" onClick={()=>setSex('female')}> <FemaleSvg/> <SpanSexPet>Female</SpanSexPet></ButtonsSexPet>
                         </ButtonsSexPetContainer>
                     </Label>
 
@@ -232,13 +213,25 @@ const [createNotice] = useCreateNoticeMutation();
                             required    />
                     </Label>}
 
-                    <Label>Load the pet’s image<Span>*</Span>:
-                        <InputFile   multiple
+              <Label>Load the pet’s image<Span>*</Span>:
+                     <UploadImageContainer>
+                {!photoPet ? (
+                  <AddImageButton type="button">
+                    <PlusIcon />
+                    <AddFileInput
+                      multiple
                       id="uploadFile"
                       type="file"
                       name="photoPet"
-                      onChange={handleChange}/>
-                        {/* <DefaultCross width="47.33" height="47.33" /> */}
+                      onChange={handleChange}
+                    />
+                  </AddImageButton>
+                ) : null}
+                {photoPet ? (
+                  <PetImage src={URL.createObjectURL(photoPet)} alt={petName} />
+                ) : null}
+              </UploadImageContainer>
+
                     </Label>
                     <Label>Comments<Span>*</Span>:
                                 <Textarea

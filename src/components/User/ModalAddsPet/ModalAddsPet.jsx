@@ -16,18 +16,9 @@ import {
 import { useState} from 'react';
 
 
-const MODAL_STATE = {
-  IDLE: 'idle',
-  UPLOAD_IMAGE: 'uploadImage',
-  DONE: 'done',
-};
-
 const AddsPet = ({ onClose }) => {
-  // const token = useSelector(state => state.token);
-const [createPet] = useCreateUserPetsMutation();
-  // const {addPet} = response;
 
-  const [modalState, setModalState] = useState(MODAL_STATE.IDLE);
+const [createPet] = useCreateUserPetsMutation();
 
   const [name, setName] = useState('');
   const [birth, setBirth] = useState('');
@@ -160,12 +151,12 @@ const [createPet] = useCreateUserPetsMutation();
 {page? <Button
           type="submit"
           content={'Next'}
-          variant="primary"
+          variant="inverse"
 
         /> : <Button
           type="submit"
           content={ 'Done' }
-          variant="primary"
+          variant="inverse"
 
         />}
 

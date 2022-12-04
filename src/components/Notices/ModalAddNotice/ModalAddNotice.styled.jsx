@@ -279,7 +279,7 @@ margin-left: auto;
 }
 `;
 
-export const ButtonsSubmitColor = styled.div`
+export const ButtonsSubmitColor = styled.button`
 width: 100%;
 height: 40px;
 
@@ -316,7 +316,7 @@ margin-bottom: 0px;
 }
 `;
 
-export const ButtonsSubmitWhite = styled.div`
+export const ButtonsSubmitWhite = styled.button`
 width: 100%;
 height: 40px;
 
@@ -334,9 +334,15 @@ display: flex;
 align-items: center;
 justify-content: center;
 letter-spacing: 0.04em;
-
+transition:background-color, 250ms, linear;
+transition:color, 250ms, linear;
+transition:border, 250ms, linear;
 color: #111111;
-
+&:hover{
+  color: #FFFFFF;
+ border: none;
+  background-color: #F59256;
+}
 @media screen and (min-width: 768px) {
 width: 180px;
 height: 44px;

@@ -181,7 +181,7 @@ const [createNotice] = useCreateNoticeMutation();
                     </Label>
 
                     <ButtonsSubmitContainer>
-                        < ButtonsSubmitColor type="button" onClick={handleAddInfo }>Next</ ButtonsSubmitColor>
+                        < ButtonsSubmitWhite type="button" onClick={handleAddInfo }>Next</ ButtonsSubmitWhite>
                         < ButtonsSubmitWhite type="button" onClick={()=>onClose()}>Cancel</ ButtonsSubmitWhite>
                     </ButtonsSubmitContainer>
             </Form>) : (<Form>
@@ -240,7 +240,7 @@ const [createNotice] = useCreateNoticeMutation();
                                     required></Textarea>
                     </Label>
                     <ButtonsSubmitContainer>
-                        < ButtonsSubmitColor type="submit" onClick={submitForm}>Done</ ButtonsSubmitColor>
+                        < ButtonsSubmitWhite type="submit" onClick={submitForm}>Done</ ButtonsSubmitWhite>
                         < ButtonsSubmitWhite type="button" onClick={()=>setPage(true)}>Back</ ButtonsSubmitWhite>
                             </ButtonsSubmitContainer>
                         </Form>)

@@ -14,6 +14,9 @@ export const UserInfo = styled.div`
 `;
 
 export const Avatar = styled.div`
+
+
+
   @media screen and (min-width: 768px) {
     margin: 0 0 0 52px;
   }
@@ -24,6 +27,14 @@ export const Avatar = styled.div`
 `;
 
 export const ImgUser = styled.img`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+background-repeat:no-repeat;
+  background-size:cover;
+  background-image:url('  https://s.gravatar.com/avatar/0cfe0ef3a357503c4a4538414b870ca1?s=100&r=x&d=retro');
   width: 233px;
   height: 233px;
   margin: 20px 24px 12px 23px;

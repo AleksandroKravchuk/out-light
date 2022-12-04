@@ -40,7 +40,15 @@ const buttonAppearances = {
   background-color: #ffffff;
   color: #111111;
   border: 1px solid #f59256;
-
+  //  margin-top: 30px;
+  margin-bottom: 12px;
+  transition:background-color, 250ms, linier;
+  transition:color, 250ms, linier;
+ &:hover {
+        background-color: #f59256;
+  color: #ffffff;
+  border: 1px solid #f59256;
+    }
 
   &:disabled {
     &:hover {

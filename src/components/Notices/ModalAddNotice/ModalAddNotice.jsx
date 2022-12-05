@@ -86,6 +86,7 @@ const [createNotice] = useCreateNoticeMutation();
     };
 
   const handleAddInfo = e => {
+     e.preventDefault();
       if (title === '' ||petName === ''||birth === ''||breed === '' ) {
       return Notiflix.Notify.failure('All fields must be filled');
     }
@@ -109,13 +110,14 @@ const [createNotice] = useCreateNoticeMutation();
   formData.append('comments', comments);
   formData.append('photoNotices', photoPet);
   const submitForm = e => {
-      if (location === '' ||photoPet==='' ) {
+     e.preventDefault();
+      if (location === '' ||photoPet===null||comments==='' ) {
       return Notiflix.Notify.failure('All fields must be filled');
       }
          if (sex === '' ) {
       return Notiflix.Notify.failure('Please choose sex');
     }
-    e.preventDefault();
+
     createNotice(formData);
     onClose();
   }
@@ -181,7 +183,7 @@ const [createNotice] = useCreateNoticeMutation();
                     </Label>
 
                     <ButtonsSubmitContainer>
-                        < ButtonsSubmitWhite type="button" onClick={handleAddInfo }>Next</ ButtonsSubmitWhite>
+                        < ButtonsSubmitColor type="button" onClick={handleAddInfo }>Next</ ButtonsSubmitColor>
                         < ButtonsSubmitWhite type="button" onClick={()=>onClose()}>Cancel</ ButtonsSubmitWhite>
                     </ButtonsSubmitContainer>
             </Form>) : (<Form>
@@ -240,7 +242,7 @@ const [createNotice] = useCreateNoticeMutation();
                                     required></Textarea>
                     </Label>
                     <ButtonsSubmitContainer>
-                        < ButtonsSubmitWhite type="submit" onClick={submitForm}>Done</ ButtonsSubmitWhite>
+                        < ButtonsSubmitColor type="submit" onClick={submitForm}>Done</ ButtonsSubmitColor>
                         < ButtonsSubmitWhite type="button" onClick={()=>setPage(true)}>Back</ ButtonsSubmitWhite>
                             </ButtonsSubmitContainer>
                         </Form>)

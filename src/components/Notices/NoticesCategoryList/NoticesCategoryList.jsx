@@ -4,10 +4,22 @@ import { NoticeCategoryItem } from "components/Notices/NoticesCategoryItem/Notic
 import { response } from "api";
 import { Gallery } from "./NoticesCategoryList.styled";
 import { useSelector } from "react-redux";
+import { useGetUserPetsQuery } from 'redux/auth/authOperations';
 
 const NoticesCategoryList = () => {
-
+  // const { data, getUserPets } = useGetUserPetsQuery();
     const {notices, handleFavoriteClick} = useOutletContext();
+// const [notices, setNotices] = useState([]);
+
+
+//   useEffect(() => {
+//     if (!data) {
+//   return
+// }
+// setNotices(data.data.notices);
+//   }, [data]);
+
+// console.log(data.data.notices)
 
     return (
         <>
@@ -15,7 +27,7 @@ const NoticesCategoryList = () => {
                 ? (<Gallery>
                         {notices.map(notice => <NoticeCategoryItem key={notice._id} notice={notice} onClick={handleFavoriteClick}/>)}
                     </Gallery >)
-                : <p>Інформації не знайдено</p>
+                :   <p>Nothing added</p>
             }
         </>
     )

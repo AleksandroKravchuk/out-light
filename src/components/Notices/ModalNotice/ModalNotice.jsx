@@ -1,4 +1,5 @@
 import { ReactComponent as AddIcon } from "icons/add.svg";
+import { useSelector } from "react-redux";
 // import { ReactComponent as RemoveIcon } from "icons/remove.svg";
 import { GrClose } from 'react-icons/gr';
 import { IconContext } from "react-icons";
@@ -11,9 +12,10 @@ import {
 
 
 
-export const ModalNotice = ({ notice, onClose}) => {
-let photos;
-
+export const ModalNotice = ({ notice, onClose,onAddFavoriteBtnClick,errorAdd}) => {
+  let photos;
+   const userId = useSelector(state => state.auth.id);
+ const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const { title, name, birth, breed,
         location, sex, price,
         category, comments, owner,
@@ -57,12 +59,21 @@ let photos;
                 </Description>
                 <Comments><Span>Comments:</Span>{comments} </Comments>
                 <ButtonGroup>
-                    <ButtonAdd type="button" >
-                        <BtnAddName>Add to</BtnAddName> <AddIcon width="24" height="22" />
-                    </ButtonAdd>
-                    <ButtonCall href="tel:1111111111">Contact</ButtonCall>
+
+            {isLoggedIn ? (<ButtonAdd type="button"className={notice.favorite?.includes(userId) && 'remove'} onClick={onAddFavoriteBtnClick}><BtnAddName
+              >{notice.favorite?.includes(userId) ? 'Remove from':'Add to'} </BtnAddName><AddIcon width="24" height="22" /></ButtonAdd>)
+                : (<ButtonAdd type="button" onClick={errorAdd}><BtnAddName >Add to </BtnAddName><AddIcon width="24" height="22" /></ButtonAdd>)}
+                        {/* <BtnAddName>Add to</BtnAddName> <AddIcon width="24" height="22" /> */}
+
+                    <ButtonCall href="owner.phone">Contact</ButtonCall>
                 </ButtonGroup>
             </Container>
         </>
     )
 };
+
+  // {isLoggedIn ? (<AddToFavoriteBtn onClick={handleBtnClick} className={notice.favorite?.includes(userId) && 'remove'}>
+  //                 <AddIcon width="24" height="22" />
+  //               </AddToFavoriteBtn>):(<AddToFavoriteBtn onClick={errorAdd} >
+  //                   <AddIcon width="24" height="22"  />
+  //               </AddToFavoriteBtn>)}

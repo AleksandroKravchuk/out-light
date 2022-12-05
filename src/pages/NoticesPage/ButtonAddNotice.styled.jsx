@@ -24,9 +24,9 @@ export const LinkAddPet = styled(NavLink)`
     position: absolute;
     width: 80px;
     height: 80px;
-    top: 240px;
+    top: 250px;
     left: 200px;
-    z-index: 100;
+    z-index: 20;
     cursor: pointer;
   }
   @media screen and (min-width: 768px) {
@@ -43,7 +43,7 @@ export const AddPet = styled.span`
     color: #ffffff;
     position: absolute;
     width: 100%;
-    top: 290px;
+    top: 300px;
     left: 218px;
     z-index: 110;
   }

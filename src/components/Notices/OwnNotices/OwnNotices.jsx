@@ -7,11 +7,11 @@ const OwnNotices = () => {
     const [error, setError] = useState('');
     const { data: notices } = useGetOwnNoticesQuery();
     let ownNotices = [];
-    
+
     if (notices) {
         ownNotices = notices.data.pets;
     };
-
+console.log(ownNotices)
     return (
         <>
             {error && <p>{error.message}</p>}

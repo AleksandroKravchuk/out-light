@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const Description = styled.div`
      margin-bottom: 20px;
-    
+
     @media screen and (min-width: 768px){
         display: flex;
     }
@@ -27,7 +27,7 @@ export const Photo = styled.img`
     height: 240px;
     border-radius: 0px 0px 40px 40px;
     display: flex;
-    
+
     @media screen and (min-width: 768px) {
         width: 288px;
         height: 328px;
@@ -36,7 +36,7 @@ export const Photo = styled.img`
     }
 
     @media screen and (min-width: 1280px) {
-       
+
     }
 `
 
@@ -93,7 +93,7 @@ export const Key = styled.span`
 `
 
 export const Value = styled.p`
-    
+
 `
 export const Li = styled.li`
     display: flex;
@@ -106,7 +106,7 @@ export const Li = styled.li`
 
 
 export const Comments = styled.p`
-    
+
     line-height: 1.5;
     letter-spacing: 0.04em;
     margin-bottom: 32px;
@@ -141,7 +141,7 @@ export const ButtonGroup = styled.div`
     @media screen and (min-width: 768px){
         flex-direction: unset;
         justify-content: end;
-            
+
     }
 `
 
@@ -156,16 +156,19 @@ export const ButtonAdd = styled.button`
     border: 2px solid #F59256;
     border-radius: 40px;
     margin-right: 12px;
-   
-    
+&.remove {
+      color: #F59256;
+        /* color: rgba(17, 17, 17, 0.6); */
+    }
+
     @media screen and (min-width: 768px){
         width: 160px;
     }
 
-    &:hover,
+    /* &:hover,
     &:focus {
         color: #F59256;
-    }
+    } */
 
 `
 export const BtnAddName = styled.span`
@@ -197,7 +200,7 @@ export const ButtonCall = styled.a`
         pointer-events: none;
         }
     }
-    
+
     @media screen and (min-width: 768px){
         width: 160px;
         margin-bottom: 0;

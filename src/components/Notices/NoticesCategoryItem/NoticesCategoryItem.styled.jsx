@@ -128,22 +128,47 @@ export const AddToFavoriteBtn = styled.button`
     width: 44px;
     height: 44px;
     padding: 0;
-
     background: rgba(255, 255, 255, 0.6);
     color: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
     border: 1px solid transparent;
 
-    &:hover,
+    /* &:hover,
     &:focus {
         color: #F59256;
-    }
+    } */
 
     &.remove {
-        color: rgba(17, 17, 17, 0.6);
+      color: #F59256;
+        /* color: rgba(17, 17, 17, 0.6); */
     }
 `;
+export const DeleteBtn = styled.button`
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.6);
+       color: #F59256;
+    /* color: rgba(255, 255, 255, 0.6); */
+    border-radius: 50%;
+    border: 1px solid transparent;
 
+    /* &:hover,
+    &:focus {
+        color: #F59256;
+    } */
+
+    &.remove {
+      color: #F59256;
+        /* color: rgba(17, 17, 17, 0.6); */
+    }
+`;
 // export const RemoveFromFavoriteBtn = styled(AddToFavoriteBtn)`
 //     color: rgba(17, 17, 17, 0.6);
 // `;

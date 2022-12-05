@@ -19,7 +19,7 @@ import {
   Section,
   EyeContainer,
   EyeSymbol,
-  BackBtn,
+  // BackBtn,
 } from './LoginPage.styled';
 // import {
 //   BackBtn, Button, Container, EyeContainer,
@@ -256,7 +256,7 @@ if (password.length <7) {
                   </li>
                   {!page&& (
                     <li>
-                      <BackBtn onClick={() => setPage(page - 1)}>Back</BackBtn>
+                      <Button onClick={() => setPage(page - 1)}>Back</Button>
                     </li>
                   )}
                   <li>

@@ -1,29 +1,36 @@
 import { response } from 'api';
+import Notiflix from 'notiflix';
+import { useSelector } from "react-redux";
 import Modal from 'components/Modal/Modal';
 import { ModalNotice } from 'components/Notices/ModalNotice/ModalNotice';
 import { ReactComponent as AddIcon } from 'icons/add.svg';
 import { ReactComponent as RemoveIcon } from 'icons/remove.svg';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import {
   AddToFavoriteBtn, Button, CardDetailInfo, CardDetailsContainer,
-  CardImageContainer, CardInfoContainer, Category, NoticeCategoryItemStyled, Photo, RemoveFromFavoriteBtn, Title
+  CardImageContainer, CardInfoContainer, Category, NoticeCategoryItemStyled, Photo, DeleteBtn, Title
 } from './NoticesCategoryItem.styled';
+import { useDeleteNoticeMutation } from 'redux/auth/authOperations';
+import { useEffect } from 'react';
 
 let category = '';
 let photo;
 
 export const NoticeCategoryItem = ({ notice, onClick }) => {
-
+ const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const [showModal, setShowModal] = useState(false);
-
+  const [deleteNotice] = useDeleteNoticeMutation();
   const userId = useSelector(state => state.auth.id);
-
   const { addToFavorite, removeFromFavorite } = response;
-
   const token = useSelector(state => state.auth.token);
-  // const notices = useSelector(state => state.notices.items)
 
+
+
+  const isOwner = () => {
+    if (notice.owner._id === userId) {
+      return true
+    }
+  }
   switch (notice.category) {
     case 'sell':
       category = 'Sell';
@@ -67,16 +74,12 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
     }
 }
 
-
-// console.log(yearBirth)
-//   console.log(date )
-
   const handleBtnClick = async id => {
-    console.log(id)
+    // console.log(id)
     id = notice._id;
 
     if (notice.favorite?.includes(userId)) {
-      console.log('remove from favorite: ', id);
+      // console.log('remove from favorite: ', id);
       await removeFromFavorite(id, token);
 
       onClick();
@@ -87,39 +90,29 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
       return;
     }
 
-    // console.log('add to favorite: ', id);
     await addToFavorite(id, token);
     onClick();
     }
 
-  // const handleAddFavoriteBtnClick = id => {
-    // id = notice._id;
-
-    // if (!token) {
-    //   alert('please login');
-    //   return;
-    // }
-    // console.log('token', token)
-    // console.log('add to favorite: ', id);
-    // addToFavorite(id, token);
-  // };
-
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+  const errorAdd = () => {
+  return Notiflix.Notify.failure('You are not authorized');
+}
 
 
     return (
         <NoticeCategoryItemStyled>
             <CardImageContainer>
                 <Photo src={photo} alt={notice.comments} />
-                <Category>{category}</Category>
-                <AddToFavoriteBtn onClick={handleBtnClick} className={notice.favorite?.includes(userId) && 'remove'}>
-                  {!notice.favorite?.includes(userId)
-                    ? <AddIcon width="24" height="22" />
-                    : <RemoveIcon width="19.5" height="21" />
-                  }
-                </AddToFavoriteBtn>
+          <Category>{category}</Category>
+          {isLoggedIn ? (<AddToFavoriteBtn onClick={handleBtnClick} className={notice.favorite?.includes(userId) && 'remove'}>
+                  <AddIcon width="24" height="22" />
+                </AddToFavoriteBtn>):(<AddToFavoriteBtn onClick={errorAdd} >
+                    <AddIcon width="24" height="22"  />
+                </AddToFavoriteBtn>)}
+{isLoggedIn && isOwner() ? <DeleteBtn onClick={() => deleteNotice(notice._id)}><RemoveIcon width="19.5" height="21" /></DeleteBtn>:null}
                   {/* // : (<RemoveFromFavoriteBtn onClick={handleBtnClick}>
                   //         <RemoveIcon width="19.5" height="21" />
                   //     </RemoveFromFavoriteBtn>) */}
@@ -142,7 +135,7 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
             </CardInfoContainer>
             <Button type="button" onClick={handleOpenModal}>Learn more</Button>
             {showModal && <Modal onClose={handleCloseModal}>
-                <ModalNotice notice={notice} onClose={handleCloseModal} onAddFavoriteBtnClick={handleBtnClick} onRemoveFavoriteBtnClick={handleBtnClick}/>
+          <ModalNotice notice={notice} onClose={handleCloseModal} onAddFavoriteBtnClick={handleBtnClick} errorAdd={errorAdd} />
             </Modal>}
         </NoticeCategoryItemStyled>
     );

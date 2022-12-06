@@ -132,6 +132,12 @@ export const CloseModal = styled.button`
     background: #FDF7F2;
     backdrop-filter: blur(2px);
     padding: 12px 12px 9px 12px;
+    cursor: pointer;
+    transition:box-shadow, 250ms, linear;
+    :hover,
+    :focus{
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
 `
 
 export const ButtonGroup = styled.div`
@@ -156,6 +162,7 @@ export const ButtonAdd = styled.button`
     border: 2px solid #F59256;
     border-radius: 40px;
     margin-right: 12px;
+    cursor: pointer;
 &.remove {
       color: #F59256;
         /* color: rgba(17, 17, 17, 0.6); */

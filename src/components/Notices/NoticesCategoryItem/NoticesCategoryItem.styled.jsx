@@ -132,7 +132,7 @@ export const AddToFavoriteBtn = styled.button`
     color: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
     border: 1px solid transparent;
-
+cursor: pointer;
     /* &:hover,
     &:focus {
         color: #F59256;
@@ -154,15 +154,16 @@ export const DeleteBtn = styled.button`
     height: 44px;
     padding: 0;
     background: rgba(255, 255, 255, 0.6);
-       color: #F59256;
+       color: gray;
+       cursor: pointer;
     /* color: rgba(255, 255, 255, 0.6); */
     border-radius: 50%;
     border: 1px solid transparent;
 
-    /* &:hover,
+    &:hover,
     &:focus {
         color: #F59256;
-    } */
+    }
 
     &.remove {
       color: #F59256;
@@ -212,7 +213,7 @@ export const Button = styled.button`
     width: 248px;
     height: 38px;
     outline: none;
-
+cursor: pointer;
     background: #FFFFFF;
     border: 2px solid #F59256;
     border-radius: 40px;

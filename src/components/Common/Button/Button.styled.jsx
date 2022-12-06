@@ -18,8 +18,13 @@ const style = css`
   font-size: 16px;
   line-height: 22px;
   border-radius: 40px;
+  margin-top:12px;
   background-color: transparent;
   cursor: pointer;
+    @media screen and (min-width: 768px) {
+font-size: 20px;
+line-height: 27px;
+}
 `;
 
 const buttonAppearances = {

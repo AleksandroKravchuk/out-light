@@ -27,4 +27,8 @@ export const ModalBody = styled.div`
   border-radius: 25px;
   padding: 40px 20px 40px 20px;
   overflow: hidden;
+  @media screen and (min-width: 768px) {
+    /* width: 448px; */
+padding:40px 80px;
+}
 `;

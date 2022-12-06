@@ -36,7 +36,11 @@ cursor: pointer;
 
 background: #FDF7F2;
 backdrop-filter: blur(2px);
-
+   transition:box-shadow, 250ms, linear;
+    :hover,
+    :focus{
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
 @media screen and (min-width: 768px) {
     width: 44px;
     height: 44px;

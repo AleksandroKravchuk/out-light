@@ -47,7 +47,7 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
 
   if (notice.photo) {
     // photo= notice.photo;
-    photo = `https://blende2.herokuapp.com/${notice.photo}`
+    photo = `https://out-light.herokuapp.com/${notice.photo}`
 
   } else {
     photo =

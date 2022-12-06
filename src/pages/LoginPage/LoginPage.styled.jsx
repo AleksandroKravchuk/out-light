@@ -144,7 +144,7 @@ export const Button = styled.button`
   background-color: #f59256;
   font-size: 18px;
   line-height: 24px;
-
+cursor: pointer;
   @media screen and (min-width: 768px) {
     line-height: 27px;
     font-weight: 500;

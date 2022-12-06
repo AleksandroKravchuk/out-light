@@ -10,7 +10,7 @@ import { Avatar, EditPhotoBtn, ImgUser, UserInfo } from './UserData.styled';
 
 
 export const UserData = () => {
-  const BASE_URL='https://blende2.herokuapp.com'
+  const BASE_URL='https://out-light.herokuapp.com'
     const {data} = useGetUserInfoQuery();
   const [updateAvatar] = useUpdateAvatarMutation();
   const [file, setFile] = useState(false);

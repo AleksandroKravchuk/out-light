@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import { ReactComponent as PlusSvgIcon } from 'icons/VectorAddPet.svg';
 
+
+export const Form= styled.form`
+@media screen and (min-width: 768px) {
+    width: 448px;
+padding:0px 20px;
+}
+`;
 export const ModalName = styled.p`
   text-align: center;
   font-family: 'Manrope';
@@ -9,6 +16,11 @@ export const ModalName = styled.p`
   font-size: 24px;
   line-height: 33px;
   margin-bottom: 33px;
+  @media screen and (min-width: 768px) {
+font-size: 36px;
+line-height: 49px;
+}
+
 `;
 
 export const CloseModal = styled.button`
@@ -23,6 +35,11 @@ export const CloseModal = styled.button`
   border-radius: 50%;
   align-items: center;
   cursor: pointer;
+     transition:box-shadow, 250ms, linear;
+    :hover,
+    :focus{
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
 `;
 
 export const UploadImageContainer = styled.div`
@@ -78,8 +95,42 @@ export const AddFileInput = styled.input`
   inset: 0;
   opacity: 0;
   z-index: 999;
+
+
+    /* @media screen and (min-width: 768px) {
+   &::label{
+font-size: 24px;
+line-height: 26px;
+  }
+  &::placeholder{
+font-weight: 400;
+font-size: 16px;
+line-height: 26px;
+  }
+} */
+
+    /* @media screen and (min-width: 768px){
+
+width:300px;
+    } */
 `;
-export const AddFileLabelInput = styled.label``;
+export const AddFileLabelInput = styled.label`
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-weight: 500;
+font-size: 16px;
+line-height: 22px;
+text-align:center;
+    @media screen and (min-width: 768px){
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 24px;
+    }
+`;
 
 export const PetImage = styled.img`
   width: inherit;

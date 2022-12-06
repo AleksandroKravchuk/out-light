@@ -23,7 +23,7 @@ export const ModalNotice = ({ notice, onClose,onAddFavoriteBtnClick,errorAdd}) =
 
     if (notice.photo) {
     // photo= notice.photo;
-    photos = `https://blende2.herokuapp.com/${notice.photo}`
+    photos = `https://out-light.herokuapp.com/${notice.photo}`
 
   } else {
     photos =

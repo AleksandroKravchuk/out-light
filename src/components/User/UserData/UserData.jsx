@@ -34,23 +34,13 @@ export const UserData = () => {
 
 
   };
-const { logo, name } = user;
-  // let avatar;
-//   const addLogo =async () => {
-//     if (user) {
-//     avatar = await logo.slice(0, 4);
-// return avatar
-//     }
-console.log(logo)
-//   }
+const { logo, name ,avatar} = user;
+
   return (
     <UserInfo>
       <Avatar>
-        {/* {user&&!file ?<ImgUser src={'  https://s.gravatar.com/avatar/0cfe0ef3a357503c4a4538414b870ca1?s=100&r=x&d=retro'} alt={name}/>: <ImgUser src={`${BASE_URL}/${logo}`} alt={name}/>} */}
 
-        {/* {!user|| addLogo()==="http"?   <ImgUser src={'  https://s.gravatar.com/avatar/0cfe0ef3a357503c4a4538414b870ca1?s=100&r=x&d=retro'}alt={name} />: <ImgUser src={`${BASE_URL}/${logo}`} alt={name} />} */}
-
-{ user&&   <ImgUser src={logo} alt={name} />}
+{ user.logo ?  <ImgUser src={logo} alt={name} />:<ImgUser src={avatar} alt={name} />}
         <form encType="multipart/form-data" onSubmit={handleChange}>
 
           <EditPhotoBtn type="button">

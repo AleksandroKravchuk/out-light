@@ -25,12 +25,13 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
   const token = useSelector(state => state.auth.token);
 
 
-
   const isOwner = () => {
+
     if (notice.owner._id === userId) {
       return true
     }
   }
+
   switch (notice.category) {
     case 'sell':
       category = 'Sell';

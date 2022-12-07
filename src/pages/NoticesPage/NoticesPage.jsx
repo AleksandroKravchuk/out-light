@@ -62,7 +62,7 @@ const [showModal, setShowModal] = useState(false);
             setSearch(formInput);
             setCount(count + 1);
         }
-console.log(query)
+// console.log(query)
     const handleClick = async (e) => {
         try {
             const { nodeName, pathname, parentNode } = e.target;

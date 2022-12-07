@@ -10,7 +10,7 @@ import { Avatar, EditPhotoBtn, ImgUser, UserInfo } from './UserData.styled';
 
 
 export const UserData = () => {
-  const BASE_URL='https://out-light.herokuapp.com'
+  // const BASE_URL='https://out-light.herokuapp.com'
     const {data} = useGetUserInfoQuery();
   const [updateAvatar] = useUpdateAvatarMutation();
   const [file, setFile] = useState(false);
@@ -35,14 +35,14 @@ export const UserData = () => {
 
   };
 const { logo, name } = user;
-  let avatar;
-  const addLogo =async () => {
-    if (user) {
-    avatar = await logo.slice(0, 4);
-return avatar
-    }
-    console.log(user)
-  }
+  // let avatar;
+//   const addLogo =async () => {
+//     if (user) {
+//     avatar = await logo.slice(0, 4);
+// return avatar
+//     }
+console.log(logo)
+//   }
   return (
     <UserInfo>
       <Avatar>
@@ -50,7 +50,7 @@ return avatar
 
         {/* {!user|| addLogo()==="http"?   <ImgUser src={'  https://s.gravatar.com/avatar/0cfe0ef3a357503c4a4538414b870ca1?s=100&r=x&d=retro'}alt={name} />: <ImgUser src={`${BASE_URL}/${logo}`} alt={name} />} */}
 
-{ user&&   <ImgUser src={`${BASE_URL}/${logo}`} alt={name} />}
+{ user&&   <ImgUser src={logo} alt={name} />}
         <form encType="multipart/form-data" onSubmit={handleChange}>
 
           <EditPhotoBtn type="button">

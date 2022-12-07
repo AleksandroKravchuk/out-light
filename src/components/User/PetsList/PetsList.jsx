@@ -6,7 +6,6 @@ import { useDeleteUserPetMutation } from 'redux/auth/authOperations';
 import { Item, Text, Image, DeleteBtn, DeleteSvg } from './PetsList.styled';
 
 export const PetsList = ({ pets }) => {
-  const baseUrl = 'https://out-light.herokuapp.com';
   const [deleteUserPet] = useDeleteUserPetMutation();
 
   return (
@@ -14,7 +13,7 @@ export const PetsList = ({ pets }) => {
       {pets.map(({ _id, photoPet, name, birth, breed, comments }) => {
         return (
           <Item key={_id}>
-            <Image src={`${baseUrl}/${photoPet}`} alt={name} />
+            <Image src={photoPet} alt={name} />
             <DeleteBtn onClick={() => deleteUserPet(_id)}>
               <DeleteSvg src={remove} alt="removePet" />
             </DeleteBtn>

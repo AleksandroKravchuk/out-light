@@ -45,14 +45,14 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
       return;
   }
 
-  if (notice.photo) {
-    // photo= notice.photo;
-    photo = `https://out-light.herokuapp.com/${notice.photo}`
+  // if (notice.photo) {
+  //   // photo= notice.photo;
+  //   photo = `https://out-light.herokuapp.com/${notice.photo}`
 
-  } else {
-    photo =
-      'https://t4.ftcdn.net/jpg/03/08/68/19/360_F_308681935_VSuCNvhuif2A8JknPiocgGR2Ag7D1ZqN.jpg';
-  }
+  // } else {
+  //   photo =
+  //     'https://t4.ftcdn.net/jpg/03/08/68/19/360_F_308681935_VSuCNvhuif2A8JknPiocgGR2Ag7D1ZqN.jpg';
+  // }
 
   const age = () => {
   const current = new Date();
@@ -105,7 +105,7 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
     return (
         <NoticeCategoryItemStyled>
             <CardImageContainer>
-                <Photo src={photo} alt={notice.comments} />
+                <Photo src={notice.photo} alt={notice.comments} />
           <Category>{category}</Category>
           {isLoggedIn ? (<AddToFavoriteBtn onClick={handleBtnClick} className={notice.favorite?.includes(userId) && 'remove'}>
                   <AddIcon width="24" height="22" />

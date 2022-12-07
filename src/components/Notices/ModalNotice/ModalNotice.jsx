@@ -13,7 +13,7 @@ import {
 
 
 export const ModalNotice = ({ notice, onClose,onAddFavoriteBtnClick,errorAdd}) => {
-  let photos;
+  // let photos;
    const userId = useSelector(state => state.auth.id);
  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
     const { title, name, birth, breed,
@@ -21,14 +21,14 @@ export const ModalNotice = ({ notice, onClose,onAddFavoriteBtnClick,errorAdd}) =
         category, comments, owner,
     } = notice;
 
-    if (notice.photo) {
-    // photo= notice.photo;
-    photos = `https://out-light.herokuapp.com/${notice.photo}`
+  //   if (notice.photo) {
+  //   // photo= notice.photo;
+  //   photos = `https://out-light.herokuapp.com/${notice.photo}`
 
-  } else {
-    photos =
-      'https://t4.ftcdn.net/jpg/03/08/68/19/360_F_308681935_VSuCNvhuif2A8JknPiocgGR2Ag7D1ZqN.jpg';
-  }
+  // } else {
+  //   photos =
+  //     'https://t4.ftcdn.net/jpg/03/08/68/19/360_F_308681935_VSuCNvhuif2A8JknPiocgGR2Ag7D1ZqN.jpg';
+  // }
 
     return (
         <>
@@ -40,7 +40,7 @@ export const ModalNotice = ({ notice, onClose,onAddFavoriteBtnClick,errorAdd}) =
                 </CloseModal>
                 <Description>
                     <CardImageContainer>
-                        <Photo src={photos} alt={name} />
+                        <Photo src={notice.photo} alt={name} />
                         <Category>{category}</Category>
                     </CardImageContainer>
                     <InfoContainer>

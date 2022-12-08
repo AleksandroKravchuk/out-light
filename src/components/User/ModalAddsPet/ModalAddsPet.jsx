@@ -1,5 +1,5 @@
 import Button from 'components/Common/Button/Button';
-import { Input,label } from 'components/Common/Input/Input';
+import { Input } from 'components/Common/Input/Input';
 import { ReactComponent as Cross } from 'icons/cross.svg';
 import { useCreateUserPetsMutation} from 'redux/auth/authOperations';
 import {
@@ -13,6 +13,7 @@ import {
   PlusIcon,
   PetImage,
   Form,
+  BtnBlock,
 } from './ModalAddsPet.styled';
 import { useState} from 'react';
 import { Label } from 'components/Common/Input/Input.styled';
@@ -86,11 +87,10 @@ const [createPet] = useCreateUserPetsMutation();
       <Form encType="multipart/form-data" onSubmit={handleSubmit}>
         {page? (
           <>
-            <Label>Name pet</Label>
             <Input
               type="text"
               name="name"
-              // label="Name pet"
+              label="Name pet"
               placeholder="Type name pet"
               required
               onChange={handleChange}
@@ -150,8 +150,9 @@ const [createPet] = useCreateUserPetsMutation();
               onChange={handleChange}
             />
           </>
-        ) }
-{page? <Button
+          )}
+        <BtnBlock>
+          {page? <Button
           type="submit"
           content={'Next'}
           variant="inverse"
@@ -163,8 +164,11 @@ const [createPet] = useCreateUserPetsMutation();
 
         />}
 
+        {page ? <Button type="button" onClick={() => onClose()} content="Cancel" variant="inverse" /> :
+          <Button type="button" onClick={() => setPage(true)} content="Cancel" variant="inverse" />}
+        </BtnBlock>
 
-        <Button type="button" onClick={()=>setPage(true)} content="Cancel" variant="inverse" />
+
       </Form>
     </>
   );

@@ -1,13 +1,17 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 664px;
+    width: 280px;
     font-family: 'Manrope';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 1.4;
     color: #000000;
+
+     @media screen and (min-width: 768px){
+  width: 664px;
+    }
 `
 
 export const Description = styled.div`
@@ -23,14 +27,15 @@ export const CardImageContainer = styled.div`
 `
 
 export const Photo = styled.img`
-    width: 240px;
-    height: 240px;
+    width: 100%;
+    height: 100%;
     border-radius: 0px 0px 40px 40px;
     display: flex;
-
+margin-top:20px;
     @media screen and (min-width: 768px) {
         width: 288px;
         height: 328px;
+        margin-top:0px;
         margin-right: 20px;
         margin-bottom: 0px;
     }

@@ -28,8 +28,10 @@ export const Input = styled.input`
       @media screen and (min-width: 768px) {
 
   padding: ${({ padding }) => padding ?? '10px 16px'};
+&:nth-last-child(-n+2){
+  margin-bottom:28px;
+}
 
-margin-bottom:28px;
 margin-top:12px;
   &::placeholder{
 font-weight: 400;

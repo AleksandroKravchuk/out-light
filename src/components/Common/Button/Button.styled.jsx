@@ -22,6 +22,8 @@ const style = css`
   background-color: transparent;
   cursor: pointer;
     @media screen and (min-width: 768px) {
+     width:180px;
+     height:44px;
 font-size: 20px;
 line-height: 27px;
 }

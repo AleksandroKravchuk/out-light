@@ -123,10 +123,6 @@ font-size: 16px;
 line-height: 22px;
 text-align:center;
     @media screen and (min-width: 768px){
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 500;
 font-size: 20px;
 line-height: 24px;
     }
@@ -137,4 +133,13 @@ export const PetImage = styled.img`
   height: inherit;
   object-fit: cover;
   object-position: center;
+`;
+
+export const BtnBlock = styled.div`
+margin-top:40px;
+    @media screen and (min-width: 768px){
+  margin-top:12px;
+display:flex;
+justify-content:space-around;
+    }
 `;

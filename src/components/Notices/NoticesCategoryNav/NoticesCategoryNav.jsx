@@ -7,7 +7,7 @@ const NoticesCategoriesNav = () => {
             <Link to='lost-found'>Lost/found</Link>
             <Link to="for-free">In good hands</Link>
             <Link to="sell">Sell</Link>
-        </LinkContainer> 
+        </LinkContainer>
     )
 }
 

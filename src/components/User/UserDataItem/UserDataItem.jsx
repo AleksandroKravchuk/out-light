@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import edit from 'icons/edit.svg';
 import done from 'icons/done.svg';
 import { useUpdateUserInfoMutation } from 'redux/auth/authOperations';
@@ -47,7 +47,7 @@ export const UserDataItem = ({ user }) => {
     setUpdateName(!updateName);
     updateUserInfo(updateUserValue ).then(err => {
         if (err.error){
-        return Notiflix.Notify.failure(
+        return Notify.failure(
           `${err.error.data.message}`
         );
       }
@@ -57,7 +57,7 @@ export const UserDataItem = ({ user }) => {
     setUpdateEmail(!updateEmail);
     updateUserInfo(updateUserValue ).then(err => {
         if (err.error){
-        return Notiflix.Notify.failure(
+        return Notify.failure(
           `${err.error.data.message}`
         );
       }
@@ -68,7 +68,7 @@ export const UserDataItem = ({ user }) => {
      updateUserInfo(updateUserValue)
        .then(err => {
         if (err.error){
-        return Notiflix.Notify.failure(
+        return Notify.failure(
           `${err.error.data.message}`
         );
       }
@@ -78,7 +78,7 @@ export const UserDataItem = ({ user }) => {
     setUpdateCity(!updateCity);
     updateUserInfo(updateUserValue ).then(err => {
         if (err.error){
-        return Notiflix.Notify.failure(
+        return Notify.failure(
           `${err.error.data.message}`
         );
       }
@@ -88,7 +88,7 @@ export const UserDataItem = ({ user }) => {
       setUpdatePhone(!updatePhone);
       updateUserInfo(updateUserValue ).then(err => {
         if (err.error){
-        return Notiflix.Notify.failure(
+        return Notify.failure(
           `${err.error.data.message}`
         );
       }

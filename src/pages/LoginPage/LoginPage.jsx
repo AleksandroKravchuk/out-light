@@ -16,7 +16,7 @@ import {
 import MainContainer from "components/commonStyles/Container.styled";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BsEyeSlash, BsEye } from 'react-icons/bs';
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const LoginPage = () => {
   const location = useLocation();
@@ -32,11 +32,9 @@ const LoginPage = () => {
       case 'email':
         setEmail(value);
         break;
-
       case 'password':
         setPassword(value);
         break;
-
       default:
         return;
     }
@@ -50,9 +48,9 @@ const LoginPage = () => {
     await loginUser(newUser).then(err => {
 
       if (err.error) {
-      return Notiflix.Notify.failure(`${err.error.data.message}`);
+      return Notify.failure(`${err.error.data.message}`);
     }
-       Notiflix.Notify.success('You are logged in');
+       Notify.success('You are logged in');
     navigate('/user', { replace: true });
     });
 
@@ -62,11 +60,11 @@ const LoginPage = () => {
     event.preventDefault();
 
     if (email === '' || !email.includes('@')) {
-      return Notiflix.Notify.failure('Please, enter a valid email!');
+      return Notify.failure('Please, enter a valid email!');
     }
 
     if (password === '' || password.includes(' ')) {
-      return Notiflix.Notify.failure(
+      return Notify.failure(
         'Please, enter a valid password without spaces!'
       );
     }

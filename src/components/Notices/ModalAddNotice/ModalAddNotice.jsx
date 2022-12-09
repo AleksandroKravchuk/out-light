@@ -1,42 +1,24 @@
 import React from 'react';
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
 import { ReactComponent as Male } from "../../../icons/male.svg";
 import { ReactComponent as Female } from "../../../icons/female.svg";
 import { ReactComponent as CloseCross } from "../../../icons/cross.svg";
 import { useCreateNoticeMutation} from 'redux/auth/authOperations';
-// import { ReactComponent as DefaultCross } from "../../../icons/default-cross.svg";
-import { Input, Label, Form, Container, Title, P, Span, ButtonCategory, ButtonsCategoryContainer, ButtonsSubmitColor, ButtonsSubmitWhite, ButtonsSubmitContainer, ButtonsSexPet, ButtonsSexPetContainer, Textarea, InputFile, SpanSexPet, CloseButton, AddFileInputContainer,
+import {
+  Input, Label, Form, Container, Title, P,
+  Span, ButtonCategory, ButtonsCategoryContainer,
+  ButtonsSubmitColor, ButtonsSubmitWhite, ButtonsSubmitContainer,
+  ButtonsSexPet, ButtonsSexPetContainer,
+  Textarea, SpanSexPet, CloseButton,
   AddFileInput,
   UploadImageContainer,
   AddImageButton,
   PlusIcon,
-  PetImage, } from "./ModalAddNotice.styled";
-import styled from 'styled-components';
+  PetImage,
+  MaleSvg,
+FemaleSvg,CloseCrossIcon} from "./ModalAddNotice.styled";
 
-const MaleSvg = styled(Male)`
-    @media screen and (min-width: 768px) {
-    width: 60px;
-    height: 60px;
-    }
-`;
-
-const FemaleSvg = styled(Female)`
-    @media screen and (min-width: 768px) {
-    width: 60px;
-    height: 60px;
-    }
-`;
-
-const CloseCrossIcon = styled(CloseCross)`
-width: 15px;
-height: 15px;
-
-@media screen and (min-width: 768px) {
-    width: 20px;
-    height: 20px;
-    }
-`;
 
 const ModalAddNotice = ({onClose}) => {
 
@@ -88,10 +70,10 @@ const [createNotice] = useCreateNoticeMutation();
   const handleAddInfo = e => {
      e.preventDefault();
       if (title === '' ||petName === ''||birth === ''||breed === '' ) {
-      return Notiflix.Notify.failure('All fields must be filled');
+      return Notify.failure('All fields must be filled');
     }
     if (category=== '' ) {
-      return Notiflix.Notify.failure(
+      return Notify.failure(
         'Please, select a category'
       );
     }
@@ -112,12 +94,11 @@ const [createNotice] = useCreateNoticeMutation();
   const submitForm = e => {
      e.preventDefault();
       if (location === '' ||photoPet===null||comments==='' ) {
-      return Notiflix.Notify.failure('All fields must be filled');
+      return Notify.failure('All fields must be filled');
       }
          if (sex === '' ) {
-      return Notiflix.Notify.failure('Please choose sex');
+      return Notify.failure('Please choose sex');
     }
-
     createNotice(formData);
     onClose();
   }
@@ -126,7 +107,7 @@ const [createNotice] = useCreateNoticeMutation();
         <>
             <Container>
                 <CloseButton type="button" onClick={onClose}>
-                    <CloseCrossIcon/>
+                   <CloseCrossIcon><CloseCross/> </CloseCrossIcon>
             </CloseButton>
                     <Title>Add pet</Title>
                     <P>Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</P>
@@ -190,8 +171,8 @@ const [createNotice] = useCreateNoticeMutation();
 
                <Label>The sex<Span>*</Span>:
                         <ButtonsSexPetContainer>
-                            <ButtonsSexPet type="button" onClick={()=>setSex('male')}> <MaleSvg /> <SpanSexPet>Male</SpanSexPet></ButtonsSexPet>
-                            <ButtonsSexPet type="button" onClick={()=>setSex('female')}> <FemaleSvg/> <SpanSexPet>Female</SpanSexPet></ButtonsSexPet>
+                            <ButtonsSexPet type="button" onClick={()=>setSex('male')}> <MaleSvg><Male/></MaleSvg> <SpanSexPet>Male</SpanSexPet></ButtonsSexPet>
+                            <ButtonsSexPet type="button" onClick={()=>setSex('female')}> <FemaleSvg><Female></Female></FemaleSvg> <SpanSexPet>Female</SpanSexPet></ButtonsSexPet>
                         </ButtonsSexPetContainer>
                     </Label>
 

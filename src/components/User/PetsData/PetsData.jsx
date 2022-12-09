@@ -10,7 +10,7 @@ import { Container, AddBtn, ContainerTitle } from './PetsData.styled';
 export const PetsData = () => {
   const [openModal, setOpenModal] = useState(false);
   const [pets, setPets] = useState([]);
-  const { data, getUserPets } = useGetUserPetsQuery();
+  const { data} = useGetUserPetsQuery();
 
   useEffect(() => {
     if (!data) {

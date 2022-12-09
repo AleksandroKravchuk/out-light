@@ -1,11 +1,8 @@
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
 import { BsEye, BsEyeSlash } from 'react-icons/bs';
-// import { useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import {
-  useAddUserInfoMutation, useRegisterUserMutation
-} from 'redux/auth/authOperations';
+import {useRegisterUserMutation} from 'redux/auth/authOperations';
 import MainContainer from "components/commonStyles/Container.styled";
 import {
   Input,
@@ -19,12 +16,8 @@ import {
   Section,
   EyeContainer,
   EyeSymbol,
-  // BackBtn,
 } from './LoginPage.styled';
-// import {
-//   BackBtn, Button, Container, EyeContainer,
-//   EyeSymbol, FirstContainer, Form, ImageContainer, Input, P, Section, Span, Title
-// } from './RegisterPage.styled';
+
 
 const RegisterPage = () => {
   const location = useLocation();
@@ -37,11 +30,7 @@ const RegisterPage = () => {
   const [page, setPage] = useState(true);
 
   const navigate = useNavigate();
-
-  // const isId = useSelector(state => state.auth.user.id);
-
   const [registerNewUser] = useRegisterUserMutation();
-  // const [addUserInfo] = useAddUserInfoMutation();
 
   // To Hide/Show password
   const [showPassword, setshowPassword] = useState(false);
@@ -79,9 +68,8 @@ const RegisterPage = () => {
       email, password, name, city, phone
     };
     registerNewUser(newUser).then((err) => {
-      // console.log(err)
       if (err.error){
-        return Notiflix.Notify.failure(
+        return Notify.failure(
           `${err.error.data.message}`
         );
       }
@@ -94,56 +82,51 @@ navigate('/user', { replace: true });
   const handleSubmit = async event => {
     event.preventDefault();
     if (email === '' || !email.includes('@')) {
-      return Notiflix.Notify.failure('Please, enter a valid email!');
+      return Notify.failure('Please, enter a valid email!');
     }
 
     if (password === '' || password.includes(' ')) {
-      return Notiflix.Notify.failure(
+      return Notify.failure(
         'Please, enter a valid password without spaces!'
       );
     }
 if (password.length <7) {
-      return Notiflix.Notify.failure(
+      return Notify.failure(
         'Password must be between 7 and 32 characters long'
       );
     }
     if (confirmedPassword !== password || confirmedPassword === '') {
-      return Notiflix.Notify.failure('Passwords do not match!');
+      return Notify.failure('Passwords do not match!');
     }
     setPage(false);
   };
-  // const addUser = async () => {
-  //   const addInfo = { email,password,name, city, phone };
 
-  //   await addUserInfo(addInfo);
-  // };
   const handlePatchSubmit = event => {
     event.preventDefault();
     if (!/^[a-zA-Z]{2,30}/g.test(name)) {
-      return Notiflix.Notify.info('Name may only include letters');
+      return Notify.info('Name may only include letters');
     }
     if (name === '') {
-      return Notiflix.Notify.failure('Please, enter your name');
+      return Notify.failure('Please, enter your name');
     }
 
     if (city === '') {
-      return Notiflix.Notify.failure('Please, enter your city and region ');
+      return Notify.failure('Please, enter your city and region ');
     }
     if (!/^(([a-zA-Z ](,)?)*)+$/g.test(city)) {
-      return Notiflix.Notify.info(
+      return Notify.info(
         'Please, enter your city and region separated by comma and without spaces'
       );
     }
     if (phone === '') {
-      return Notiflix.Notify.failure('Please, enter your phone number');
+      return Notify.failure('Please, enter your phone number');
     }
     if (!/^[+0-9]{13}$/g.test(phone)) {
-      return Notiflix.Notify.info(
+      return Notify.info(
         'Your phone number must start with + and consist of 12 numbers'
       );
     }
     createUser();
-    // navigate('/user', { replace: true });
   };
 
   return (
@@ -205,11 +188,6 @@ if (password.length <7) {
                     </Button>
                   </li>
 
-                  {/* {!page && (
-                    <li>
-                      <BackBtn onClick={() => setPage(true)}>Back</BackBtn>
-                    </li>
-                  )} */}
                   <li>
                     <P>
                       Already have an account?

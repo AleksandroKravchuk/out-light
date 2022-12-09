@@ -5,7 +5,7 @@ import { Suspense, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { SearchForm } from "components/SearchForm/SearchForm";
-import { AuthLink, AuthLinkContainer, Category, Container, Nav, Title, StyledErr } from "./NoticesPage.styled";
+import { AuthLink, AuthLinkContainer, Category, Container, Nav, Title } from "./NoticesPage.styled";
 import {
     AddPet,
     AddPetBlock,
@@ -14,7 +14,7 @@ import {
 import { ReactComponent as AddIcon } from 'icons/addPet.svg';
 import Modal from 'components/Modal/Modal';
 import ModalAddNotice from 'components/Notices/ModalAddNotice/ModalAddNotice';
-import Notiflix from 'notiflix';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import {  useLocation } from "react-router-dom";
 import {
  useGetNoticesSearchMutation,
@@ -27,7 +27,7 @@ const NoticesPage = () => {
   const [query, setQuery] = useState("sell");
   const [count, setCount] = useState(0);
   const [notices, setNotices] = useState([]);
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
   const [dell, setDell] = useState(false);
   const location = useLocation();
   const [getAllNotices] = useGetAllNoticesMutation();
@@ -54,18 +54,19 @@ const NoticesPage = () => {
       default:
         return;
     }
-    setTimeout(() => {
+    // setTimeout(() => {
        getAllNotices(query).then(({data}) =>
       setNotices(data.data.notices)
    )
-    }, 250)
+    // }, 300)
 
-  }, [location.pathname,  query, getAllNotices, showModal, count,dell])
+  }, [location.pathname,  query, getAllNotices, showModal,dell])
+
 
     const handleSubmit =async formInput => {
           await getSearch(formInput).then((data) => {
             if (data.error) {
-              return Notiflix.Notify.failure(`Not found notice ${formInput}`);
+              return Notify.failure(`Not found notice ${formInput}`);
             }
       setNotices(data.data.data.notices)
           })
@@ -82,7 +83,7 @@ const NoticesPage = () => {
         setShowModal(!showModal);
     }
      const errorAdd = () => {
-  return Notiflix.Notify.failure('You are not authorized');
+  return Notify.failure('You are not authorized');
 }
 
     return (
@@ -121,12 +122,14 @@ const NoticesPage = () => {
              {showModal && (
         <Modal onClose={toggleModal}><ModalAddNotice onClose={toggleModal}/> </Modal>
       )}
-            {!error
-                ? (<Suspense fallback={<Loading />}>
+            {/* {!error
+          ? ( */}
+            <Suspense fallback={<Loading />}>
                     <Outlet context={{notices, handleFavoriteClick,deleteNot}} />
-                </Suspense>)
+          </Suspense>
+          {/* )
                 : <StyledErr>There is no information</StyledErr>
-            }
+            } */}
 
         </Container>
     );

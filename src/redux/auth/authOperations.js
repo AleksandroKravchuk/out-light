@@ -156,10 +156,10 @@ export const authApi = createApi({
 
     // PATCH  addNotice: '/notices/addfavorite/${noticeId}',
     addFavoriteNotice: builder.mutation({
-      query: newNotice => ({
-        url: `/notices/addfavorite/${newNotice.id}`,
+      query: id => ({
+        url: `/notices/addfavorite/${id}`,
         method: 'PATCH',
-        body: newNotice,
+        // body: newNotice,
       }),
       invalidatesTags: [{ type: 'User' }],
     }),
@@ -206,6 +206,13 @@ export const authApi = createApi({
       }),
       providesTags: ['User'],
     }),
+    getFriends: builder.query({
+      query: () => ({
+        url: '/friends',
+        method: 'GET',
+      }),
+      providesTags: ['User'],
+    }),
   }),
 });
 
@@ -233,4 +240,5 @@ export const {
   useGetNoticesSearchMutation,
   useGetAllNewsQuery,
   useGetSearchNewsMutation,
+  useGetFriendsQuery,
 } = authApi;

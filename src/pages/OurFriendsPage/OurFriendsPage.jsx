@@ -1,8 +1,9 @@
-import { response } from 'api';
 import { useEffect, useState } from 'react';
-// import { RotatingLines } from 'react-loader-spinner';
 import Loading from 'components/Loading/Loading';
 import Error from '../../components/error/error';
+import {
+  useGetFriendsQuery
+} from 'redux/auth/authOperations';
 import {
   Anchor,
   CardThumb,
@@ -17,50 +18,29 @@ import {
 } from './OurFriendsPage.styled';
 
 const OurFriendsPage = () => {
+const { data, error, isFetching }= useGetFriendsQuery();
+const [friends, setFriends] = useState([]);
 
-    const { getFriends } = response;
-
-    const [arr, setArr] = useState([]);
-    const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(false)
-
-    const getAllFriends = async () => {
-        try {
-            setIsLoading(true);
-            const res = await getFriends();
-            setArr(res);
-
-        } catch (err) {
-            setError(err);
-
-        } finally {
-            setIsLoading(false);
-        }
-    };
 
     useEffect(() => {
-        getAllFriends();
-    }, []);
+        if (!data) {
+      return
+    }
+    setFriends(data.data.friends)
+    }, [data]);
 
     return (
         <>
           <Title>Our friends</Title>
 
-            {isLoading && (
+            {isFetching && (
                 <Loading/>
-                // <RotatingLines
-                //         strokeColor="grey"
-                //         strokeWidth="5"
-                //         animationDuration="0.75"
-                //         width="96"
-                //         visible={true}
-                // />
             )}
 
-            {arr && (
+            {friends && (
               <FriendsThumb>
 
-                {arr.map(({ _id, imageUrl, title, time, address, email, phone }) => (
+                {friends.map(({ _id, imageUrl, title, time, address, email, phone }) => (
 
                   <Container key={_id}>
                     <FriendTitle>{title}</FriendTitle>

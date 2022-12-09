@@ -1,6 +1,5 @@
 import { ReactComponent as AddIcon } from "icons/add.svg";
 import { useSelector } from "react-redux";
-// import { ReactComponent as RemoveIcon } from "icons/remove.svg";
 import { GrClose } from 'react-icons/gr';
 import { IconContext } from "react-icons";
 import {
@@ -13,22 +12,14 @@ import {
 
 
 export const ModalNotice = ({ notice, onClose,onAddFavoriteBtnClick,errorAdd}) => {
-  // let photos;
-   const userId = useSelector(state => state.auth.id);
- const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-    const { title, name, birth, breed,
+
+const userId = useSelector(state => state.auth.id);
+const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+const { title, name, birth, breed,
         location, sex, price,
         category, comments, owner,
     } = notice;
 
-  //   if (notice.photo) {
-  //   // photo= notice.photo;
-  //   photos = `https://out-light.herokuapp.com/${notice.photo}`
-
-  // } else {
-  //   photos =
-  //     'https://t4.ftcdn.net/jpg/03/08/68/19/360_F_308681935_VSuCNvhuif2A8JknPiocgGR2Ag7D1ZqN.jpg';
-  // }
 
     return (
         <>
@@ -72,8 +63,3 @@ export const ModalNotice = ({ notice, onClose,onAddFavoriteBtnClick,errorAdd}) =
     )
 };
 
-  // {isLoggedIn ? (<AddToFavoriteBtn onClick={handleBtnClick} className={notice.favorite?.includes(userId) && 'remove'}>
-  //                 <AddIcon width="24" height="22" />
-  //               </AddToFavoriteBtn>):(<AddToFavoriteBtn onClick={errorAdd} >
-  //                   <AddIcon width="24" height="22"  />
-  //               </AddToFavoriteBtn>)}

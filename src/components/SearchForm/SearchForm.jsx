@@ -41,5 +41,5 @@ export const SearchForm = ({onSubmit}) => {
                 </ButtonSearch>
             </Form>
         </SearchBar>
-    ); 
+    );
 };

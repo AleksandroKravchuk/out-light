@@ -1,5 +1,5 @@
-import { response } from 'api';
-import Notiflix from 'notiflix';
+// import { response } from 'api';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useSelector } from "react-redux";
 import Modal from 'components/Modal/Modal';
 import { ModalNotice } from 'components/Notices/ModalNotice/ModalNotice';
@@ -10,27 +10,23 @@ import {
   AddToFavoriteBtn, Button, CardDetailInfo, CardDetailsContainer,
   CardImageContainer, CardInfoContainer, Category, NoticeCategoryItemStyled, Photo, DeleteBtn, Title
 } from './NoticesCategoryItem.styled';
-import { useDeleteNoticeMutation } from 'redux/auth/authOperations';
-import { useEffect } from 'react';
-
-let category = '';
+import { useDeleteNoticeMutation,useAddFavoriteNoticeMutation,useDeleteFavoriteNoticeMutation } from 'redux/auth/authOperations';
 
 
 export const NoticeCategoryItem = ({ notice, onClick ,noticeDel}) => {
  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const [showModal, setShowModal] = useState(false);
   const [deleteNotice] = useDeleteNoticeMutation();
+  const [deleteFavoriteNotice] = useDeleteFavoriteNoticeMutation();
+  const [addFavoriteNotice] = useAddFavoriteNoticeMutation();
   const userId = useSelector(state => state.auth.id);
-  const { addToFavorite, removeFromFavorite } = response;
-  const token = useSelector(state => state.auth.token);
 
   const isOwner = () => {
-
     if (notice.owner._id === userId) {
       return true
     }
   }
-
+let category = '';
   switch (notice.category) {
     case 'sell':
       category = 'Sell';
@@ -70,30 +66,23 @@ export const NoticeCategoryItem = ({ notice, onClick ,noticeDel}) => {
     deleteNotice(notice._id);
 }
   const handleBtnClick = async id => {
-    // console.log(id)
     id = notice._id;
-
     if (notice.favorite?.includes(userId)) {
-      // console.log('remove from favorite: ', id);
-      await removeFromFavorite(id, token);
-
+      deleteFavoriteNotice(id)
       onClick();
       return;
-
-    } else if (!token) {
-      alert('please login');
-      return;
+    } else {
+    addFavoriteNotice(id)
+    onClick();
     }
 
-    await addToFavorite(id, token);
-    onClick();
     }
 
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
   const errorAdd = () => {
-  return Notiflix.Notify.failure('You are not authorized');
+  return Notify.failure('You are not authorized');
 }
 
 
@@ -107,11 +96,7 @@ export const NoticeCategoryItem = ({ notice, onClick ,noticeDel}) => {
                 </AddToFavoriteBtn>):(<AddToFavoriteBtn onClick={errorAdd} >
                     <AddIcon width="24" height="22"  />
                 </AddToFavoriteBtn>)}
-{isLoggedIn && isOwner() ? <DeleteBtn onClick={ remove}><RemoveIcon width="19.5" height="21" /></DeleteBtn>:null}
-                  {/* // : (<RemoveFromFavoriteBtn onClick={handleBtnClick}>
-                  //         <RemoveIcon width="19.5" height="21" />
-                  //     </RemoveFromFavoriteBtn>) */}
-
+          {isLoggedIn && isOwner() ? <DeleteBtn onClick={ remove}><RemoveIcon width="19.5" height="21" /></DeleteBtn>:null}
             </CardImageContainer>
             <CardInfoContainer>
                 <Title>{notice.title}</Title>

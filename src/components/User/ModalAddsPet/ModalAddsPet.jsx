@@ -16,13 +16,10 @@ import {
   BtnBlock,
 } from './ModalAddsPet.styled';
 import { useState} from 'react';
-import { Label } from 'components/Common/Input/Input.styled';
-
 
 const AddsPet = ({ onClose }) => {
 
 const [createPet] = useCreateUserPetsMutation();
-
   const [name, setName] = useState('');
   const [birth, setBirth] = useState('');
   const [breed, setBreed] = useState('');
@@ -163,12 +160,9 @@ const [createPet] = useCreateUserPetsMutation();
           variant="inverse"
 
         />}
-
         {page ? <Button type="button" onClick={() => onClose()} content="Cancel" variant="inverse" /> :
           <Button type="button" onClick={() => setPage(true)} content="Cancel" variant="inverse" />}
         </BtnBlock>
-
-
       </Form>
     </>
   );

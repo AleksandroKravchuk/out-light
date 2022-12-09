@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { ReactComponent as PlusSvgIcon } from 'icons/VectorAddPet.svg';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
 overflow-y: auto;
@@ -481,4 +482,30 @@ export const PetImage = styled.img`
   height: inherit;
   object-fit: cover;
   object-position: center;
+`;
+export const MaleSvg = styled(Link)`
+    @media screen and (min-width: 768px) {
+    width: 60px;
+    height: 60px;
+    }
+`;
+
+export const FemaleSvg = styled(Link)`
+    @media screen and (min-width: 768px) {
+    width: 60px;
+    height: 60px;
+    }
+`;
+
+export const CloseCrossIcon = styled(Link)`
+display:flex;
+align-items:center;
+justify-content:center;
+width: 15px;
+height: 15px;
+
+@media screen and (min-width: 768px) {
+    width: 20px;
+    height: 20px;
+    }
 `;

@@ -1,8 +1,6 @@
 import PropTypes from 'prop-types';
-
 import remove from 'icons/remove.svg';
 import { useDeleteUserPetMutation } from 'redux/auth/authOperations';
-
 import { Item, Text, Image, DeleteBtn, DeleteSvg } from './PetsList.styled';
 
 export const PetsList = ({ pets }) => {

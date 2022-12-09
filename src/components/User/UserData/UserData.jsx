@@ -10,8 +10,7 @@ import { Avatar, EditPhotoBtn, ImgUser, UserInfo } from './UserData.styled';
 
 
 export const UserData = () => {
-  // const BASE_URL='https://out-light.herokuapp.com'
-    const {data} = useGetUserInfoQuery();
+  const {data} = useGetUserInfoQuery();
   const [updateAvatar] = useUpdateAvatarMutation();
   const [file, setFile] = useState(false);
   const [user, setUser] = useState('');

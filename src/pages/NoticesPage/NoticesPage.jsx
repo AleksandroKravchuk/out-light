@@ -54,13 +54,13 @@ const NoticesPage = () => {
       default:
         return;
     }
-    // setTimeout(() => {
+    setTimeout(() => {
        getAllNotices(query).then(({data}) =>
       setNotices(data.data.notices)
    )
-    // }, 300)
+    }, 350)
 
-  }, [location.pathname,  query, getAllNotices, showModal,dell])
+  }, [location.pathname,count,  query, getAllNotices, showModal,dell])
 
 
     const handleSubmit =async formInput => {

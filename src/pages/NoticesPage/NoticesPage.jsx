@@ -54,10 +54,17 @@ const NoticesPage = () => {
       default:
         return;
     }
+    //     (async function () {
+    //   try {
+
+    //   } catch (e) {
+    //  console.log(e)
+    //   }
+    // })();
     setTimeout(() => {
-       getAllNotices(query).then(({data}) =>
-      setNotices(data.data.notices)
-   )
+ getAllNotices(query).then(({data}) =>
+      setNotices(data.data.notices))
+
     }, 350)
 
   }, [location.pathname,count,  query, getAllNotices, showModal,dell])

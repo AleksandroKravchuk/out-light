@@ -8,7 +8,7 @@ import { useGetUserPetsQuery } from 'redux/auth/authOperations';
 
 const NoticesCategoryList = () => {
   // const { data, getUserPets } = useGetUserPetsQuery();
-    const {notices, handleFavoriteClick} = useOutletContext();
+    const {notices, handleFavoriteClick,deleteNot} = useOutletContext();
 // const [notices, setNotices] = useState([]);
 
 
@@ -25,7 +25,7 @@ const NoticesCategoryList = () => {
         <>
             {notices.length !== 0
                 ? (<Gallery>
-                        {notices.map(notice => <NoticeCategoryItem key={notice._id} notice={notice} onClick={handleFavoriteClick}/>)}
+            {notices.map(notice => <NoticeCategoryItem key={notice._id} notice={notice} onClick={handleFavoriteClick} noticeDel={deleteNot } />)}
                     </Gallery >)
                 :   <p>Nothing added</p>
             }

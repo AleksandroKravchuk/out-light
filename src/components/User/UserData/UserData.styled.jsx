@@ -34,7 +34,8 @@ export const ImgUser = styled.img`
   overflow: hidden;
 background-repeat:no-repeat;
   background-size:cover;
-  background-image:url('  https://s.gravatar.com/avatar/0cfe0ef3a357503c4a4538414b870ca1?s=100&r=x&d=retro');
+  background-color:white;
+  /* background-image:url('  https://s.gravatar.com/avatar/0cfe0ef3a357503c4a4538414b870ca1?s=100&r=x&d=retro'); */
   width: 233px;
   height: 233px;
   margin: 20px 24px 12px 23px;

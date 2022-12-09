@@ -14,16 +14,15 @@ import { useDeleteNoticeMutation } from 'redux/auth/authOperations';
 import { useEffect } from 'react';
 
 let category = '';
-let photo;
 
-export const NoticeCategoryItem = ({ notice, onClick }) => {
+
+export const NoticeCategoryItem = ({ notice, onClick ,noticeDel}) => {
  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const [showModal, setShowModal] = useState(false);
   const [deleteNotice] = useDeleteNoticeMutation();
   const userId = useSelector(state => state.auth.id);
   const { addToFavorite, removeFromFavorite } = response;
   const token = useSelector(state => state.auth.token);
-
 
   const isOwner = () => {
 
@@ -46,14 +45,6 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
       return;
   }
 
-  // if (notice.photo) {
-  //   // photo= notice.photo;
-  //   photo = `https://out-light.herokuapp.com/${notice.photo}`
-
-  // } else {
-  //   photo =
-  //     'https://t4.ftcdn.net/jpg/03/08/68/19/360_F_308681935_VSuCNvhuif2A8JknPiocgGR2Ag7D1ZqN.jpg';
-  // }
 
   const age = () => {
   const current = new Date();
@@ -74,7 +65,10 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
        return 'more three years'
     }
 }
-
+  const remove = () => {
+    noticeDel();
+    deleteNotice(notice._id);
+}
   const handleBtnClick = async id => {
     // console.log(id)
     id = notice._id;
@@ -113,7 +107,7 @@ export const NoticeCategoryItem = ({ notice, onClick }) => {
                 </AddToFavoriteBtn>):(<AddToFavoriteBtn onClick={errorAdd} >
                     <AddIcon width="24" height="22"  />
                 </AddToFavoriteBtn>)}
-{isLoggedIn && isOwner() ? <DeleteBtn onClick={() => deleteNotice(notice._id)}><RemoveIcon width="19.5" height="21" /></DeleteBtn>:null}
+{isLoggedIn && isOwner() ? <DeleteBtn onClick={ remove}><RemoveIcon width="19.5" height="21" /></DeleteBtn>:null}
                   {/* // : (<RemoveFromFavoriteBtn onClick={handleBtnClick}>
                   //         <RemoveIcon width="19.5" height="21" />
                   //     </RemoveFromFavoriteBtn>) */}

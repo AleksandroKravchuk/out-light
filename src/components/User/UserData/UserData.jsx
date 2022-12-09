@@ -35,7 +35,6 @@ export const UserData = () => {
 
   };
 const { logo, name ,avatar} = user;
-
   return (
     <UserInfo>
       <Avatar>

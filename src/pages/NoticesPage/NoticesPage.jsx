@@ -1,15 +1,12 @@
-import { response } from "api";
+
 import Loading from "components/Loading/Loading";
 import NoticesCategoriesNav from "components/Notices/NoticesCategoryNav/NoticesCategoryNav";
 import { Suspense, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import NoticesCategoryList from "components/Notices/NoticesCategoryList/NoticesCategoryList";
 import { SearchForm } from "components/SearchForm/SearchForm";
 import { AuthLink, AuthLinkContainer, Category, Container, Nav, Title, StyledErr } from "./NoticesPage.styled";
-// import SearchForm from "components/Notices/SearchForm/SearchForm";
 import {
-    //   NavSection,
     AddPet,
     AddPetBlock,
     Icon, LinkAddPet
@@ -18,79 +15,65 @@ import { ReactComponent as AddIcon } from 'icons/addPet.svg';
 import Modal from 'components/Modal/Modal';
 import ModalAddNotice from 'components/Notices/ModalAddNotice/ModalAddNotice';
 import Notiflix from 'notiflix';
+import {  useLocation } from "react-router-dom";
+import {
+ useGetNoticesSearchMutation,
+  useGetAllNoticesMutation,
+} from 'redux/auth/authOperations';
 
 const NoticesPage = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-const [showModal, setShowModal] = useState(false);
-    const [query, setQuery] = useState(null);
-    const [ownQuery, setOwnQuery] = useState(null);
-    const [search, setSearch] = useState(null)
-    const [count, setCount] = useState(0);
-    const [notices, setNotices] = useState([]);
-    const [error, setError] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [query, setQuery] = useState("sell");
+  const [count, setCount] = useState(0);
+  const [notices, setNotices] = useState([]);
+  const [error, setError] = useState(false);
+  const [dell, setDell] = useState(false);
+  const location = useLocation();
+  const [getAllNotices] = useGetAllNoticesMutation();
+  const [getSearch] = useGetNoticesSearchMutation();
+  const user = useSelector(state => state.auth.isLoggedIn);
 
-    const { getNotices, findNotices } = response;
-
-    const token = useSelector(state => state.auth.token);
-    const user = useSelector(state => state.auth.isLoggedIn);
-
-
-    const fetchNotices = async (req, key) => {
-        try {
-            const res = await getNotices(req, key);
-            setError(false)
-            setNotices(res);
-
-        } catch (err) {
-            setError(true);
-        }
+  useEffect(() => {
+    switch (location.pathname) {
+      case '/notices/sell':
+        setQuery('sell');
+        break;
+      case '/notices/lost-found':
+        setQuery('lost-found');
+        break;
+      case '/notices/for-free':
+        setQuery('for-free')
+        break;
+      case '/notices/owner':
+        setQuery('find/owner')
+        break;
+      case '/notices/favorite':
+        setQuery('find/favorite')
+        break;
+      default:
+        return;
     }
+    setTimeout(() => {
+       getAllNotices(query).then(({data}) =>
+      setNotices(data.data.notices)
+   )
+    }, 250)
 
-    const fetchSearch = async (req) => {
-        try {
-            const res = await findNotices(req);
-            setError(false)
-            setNotices(res);
+  }, [location.pathname,  query, getAllNotices, showModal, count,dell])
 
-        } catch (err) {
-            setError(true);
-        }
-    }
-        const handleSubmit = formInput => {
-            setOwnQuery(null);
-            setQuery(null);
-            setSearch(formInput);
-            setCount(count + 1);
-        }
-// console.log(query)
-    const handleClick = async (e) => {
-        try {
-            const { nodeName, pathname, parentNode } = e.target;
-
-            if (nodeName === 'A' && parentNode.className.includes('nav-block')) {
-                setOwnQuery(null);
-                setSearch(null);
-                setCount(count + 1);
-
-                setQuery(pathname.split('/').at(-1));
-
-                return;
-            } else if (nodeName === 'A' && parentNode.className.includes('own-block')) {
-                setQuery(null);
-                setSearch(null)
-                setCount(count + 1);
-
-                const path = (pathname.split('/').at(-1));
-                setOwnQuery(path);
-
-                return;
+    const handleSubmit =async formInput => {
+          await getSearch(formInput).then((data) => {
+            if (data.error) {
+              return Notiflix.Notify.failure(`Not found notice ${formInput}`);
             }
-        } catch (err) {
-            setError(true);
+      setNotices(data.data.data.notices)
+          })
         }
 
+  const deleteNot = () => {
+        setDell(true);
     }
-
     const handleFavoriteClick = () => {
         setCount(count + 1);
     }
@@ -101,27 +84,6 @@ const [showModal, setShowModal] = useState(false);
      const errorAdd = () => {
   return Notiflix.Notify.failure('You are not authorized');
 }
-    useEffect(() => {
-
-        if (!count || query) {
-
-            fetchNotices(query);
-
-        } else if (ownQuery) {
-
-            fetchNotices(ownQuery, token);
-        } else if (count && search) {
-
-            fetchSearch(search);
-        };
-
-
-        document.addEventListener('click', handleClick);
-
-        return () => {
-            document.removeEventListener('click', handleClick);
-        }
-     }, [count]);
 
     return (
 
@@ -161,7 +123,7 @@ const [showModal, setShowModal] = useState(false);
       )}
             {!error
                 ? (<Suspense fallback={<Loading />}>
-                    <Outlet context={{notices, handleFavoriteClick}} />
+                    <Outlet context={{notices, handleFavoriteClick,deleteNot}} />
                 </Suspense>)
                 : <StyledErr>There is no information</StyledErr>
             }

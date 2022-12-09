@@ -79,7 +79,7 @@ const RegisterPage = () => {
       email, password, name, city, phone
     };
     registerNewUser(newUser).then((err) => {
-      console.log(err)
+      // console.log(err)
       if (err.error){
         return Notiflix.Notify.failure(
           `${err.error.data.message}`

@@ -123,7 +123,13 @@ export const authApi = createApi({
       }),
       invalidatesTags: [{ type: 'User' }],
     }),
-
+    getNoticesSearch: builder.mutation({
+      query: search => ({
+        url: `/notices/search/${search}`,
+        method: 'GET',
+      }),
+      providesTags: ['User'],
+    }),
     //   GET getNotices: '/notices/one/{id}'
     getNotices: builder.query({
       query: id => ({
@@ -132,7 +138,13 @@ export const authApi = createApi({
       }),
       providesTags: ['User'],
     }),
-
+    getAllNotices: builder.mutation({
+      query: value => ({
+        url: `/notices/${value}`,
+        method: 'GET',
+      }),
+      providesTags: ['User'],
+    }),
     //   GET getFavoriteNotices: '/notices/find/favorite'
     getFavoriteNotices: builder.query({
       query: () => ({
@@ -179,6 +191,21 @@ export const authApi = createApi({
       }),
       invalidatesTags: [{ type: 'User' }],
     }),
+    getSearchNews: builder.mutation({
+      query: value => ({
+        url: `/news/search/${value}`,
+        method: 'GET',
+      }),
+      providesTags: ['User'],
+    }),
+    //   GET getFavoriteNotices: '/notices/find/favorite'
+    getAllNews: builder.query({
+      query: () => ({
+        url: '/news',
+        method: 'GET',
+      }),
+      providesTags: ['User'],
+    }),
   }),
 });
 
@@ -196,10 +223,14 @@ export const {
   useCreateUserPetsMutation,
   useChangeUserPetMutation,
   useDeleteUserPetMutation,
+  useGetAllNoticesMutation,
   useGetNoticesQuery,
   useAddFavoriteNoticeMutation,
   useCreateNoticeMutation,
   useDeleteFavoriteNoticeMutation,
   useDeleteNoticeMutation,
   useAddUserMutation,
+  useGetNoticesSearchMutation,
+  useGetAllNewsQuery,
+  useGetSearchNewsMutation,
 } = authApi;

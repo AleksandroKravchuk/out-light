@@ -149,7 +149,9 @@ const [createPet] = useCreateUserPetsMutation();
           </>
           )}
         <BtnBlock>
-          {page? <Button
+                  {page ? <Button type="button" onClick={() => onClose()} content="Cancel" variant="inverse" /> :
+            <Button type="button" onClick={() => setPage(true)} content="Cancel" variant="inverse" />}
+          {page ? <Button
           type="submit"
           content={'Next'}
           variant="inverse"
@@ -160,8 +162,7 @@ const [createPet] = useCreateUserPetsMutation();
           variant="inverse"
 
         />}
-        {page ? <Button type="button" onClick={() => onClose()} content="Cancel" variant="inverse" /> :
-          <Button type="button" onClick={() => setPage(true)} content="Cancel" variant="inverse" />}
+
         </BtnBlock>
       </Form>
     </>

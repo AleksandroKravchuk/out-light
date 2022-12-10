@@ -7,6 +7,7 @@ background-color: white;
 color: black;
 box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 border-radius: 40px;
+
 `;
 
 export const FriendsThumb = styled.div`
@@ -83,6 +84,7 @@ width: 100%;
 `
 
 export const Item = styled.li`
+position: relative;
 &:not(:last-child) {
     margin-bottom: 4px;
 }`
@@ -90,4 +92,61 @@ export const Item = styled.li`
 export const Anchor = styled.a`
 color: inherit;
 text-decoration: none;
+`
+export const TimeClick = styled.div`
+
+cursor: pointer;
+transition: color 250ms linear;
+/* ::after{
+  content:"";
+  position:absolute;
+width:120px;
+height:120px;
+transform:scale(0);
+transform-origin: top;
+color: inherit;
+background-color:blue;
+transition:transform 250ms linear;
+} */
+&:hover,
+&:focus{
+ color: #F59256;
+  /* ::after{
+    transform:scale(1);
+
+background-color:red;
+
+} */
+}
+
+`
+export const TimeBlock = styled.div`
+position:absolute;
+width:120px;
+height:130px;
+transform:scale(1);
+transform-origin: top;
+/* color: inherit; */
+background-color:white;
+/* background-color:yellow; */
+z-index:100;
+transition:transform 250ms linear;
+
+`
+export const TimeList = styled.ul`
+width:150px;
+height:130px;
+transform:scale(0);
+transform-origin: top;
+position:absolute;
+background-color:white;
+top:40px;
+left:0px;
+z-index:101;
+&.show{
+  transform:scale(1);
+}
+`
+export const TimeItem = styled.div`
+
 `

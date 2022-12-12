@@ -6,5 +6,4 @@ from="/*"
 to="/index.html"
 status=200
 
-[build.environment]
-    NPM_FLAGS="--prefix=/"
+

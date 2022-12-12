@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Loading from 'components/Loading/Loading';
 import Error from '../../components/error/error';
-import ModalFriends from 'components/ModalFriends/Modal';
+
 import {
   useGetFriendsQuery
 } from 'redux/auth/authOperations';
@@ -16,46 +16,51 @@ import {
   Item,
   SecondThumb,
   Title,
+  Time,
   TimeClick,
-  // TimeBlock,
+  TimeBlock,
   TimeList,TimeItem,
 } from './OurFriendsPage.styled';
 
 const OurFriendsPage = () => {
 const { data, error, isFetching }= useGetFriendsQuery();
   const [friends, setFriends] = useState([]);
-    // const [showModal, setShowModal] = useState(false);
+  const [id, setId] = useState(false);
   const [show, setShow] = useState(false);
-    // const toggleModal = evt => {
-    //     setShowModal(!showModal);
-    // }
-  let workT = '';
-  const workTime = (workDays) => {
+
+  let workT = [];
+
+  const addWorkTime = (workDays) => {
+    workT = []
+    if (workDays.length === 0) {
+      return false
+    }
     // eslint-disable-next-line array-callback-return
     workDays.map((item) => {
-      if (!item.isOpen) {
+      if (item.isOpen === false) {
         // eslint-disable-next-line array-callback-return
-        return
-      }
-      const time = `${item.from}-${item.to}`
+        const time=null
+   workT.push(time)
+      } else {
+          const time = `${item.from}-${item.to}`
       if (time) {
-        workT = time;
-        return workT;
-
-}
-
-  })
+   workT.push(time);
+      }}
+    })
   }
 
     useEffect(() => {
         if (!data) {
       return
         }
-      // console.log(data.data.friends[0])
     setFriends(data.data.friends)
-    }, [data]);
-  // console.log(show)
-console.log(friends)
+    }, [data,show,id]);
+
+  const showTime = (id) => {
+    setId(id)
+    setShow(!show)
+  }
+
     return (
         <>
           <Title>Our friends</Title>
@@ -79,45 +84,25 @@ console.log(friends)
                         </FirstThumb>
 
                         <SecondThumb>
-{/* onClick={()=>setShow(!show)} className={show && 'show'} */}
+
                           <ul>
                           <Item >
-                            <TimeClick onClick={()=>setShow(!show)} className={show && 'show'} >Time: <br />
+                            <TimeClick onClick={()=>showTime(_id)} className={show&& 'show'} >Time: <br />
                               <div className='time'>
                                 {
-                                workDays ? (<span>{workTime(workDays) } {workT}</span>) : (<span>----------</span>)
+                                  workDays ?(<span>{addWorkTime(workDays)}  { workT.find(el=>el !== null)}</span>) : (<span>----------</span>)
                                 }
                               </div>
-
-
-
-
                             </TimeClick>
-
-                            <TimeList className={show && 'show'} >
-
-                                {workDays ?<TimeItem><span>MN</span> <span>{ workT}</span></TimeItem> :<li><span>MN</span> <span>-------</span> </li>}
-                                {workDays &&<li><span>TU</span> <span>{ workT}</span></li>}
-                                {workDays &&<li><span>WE</span> <span>{ workT}</span></li>}
-                                {workDays &&<li><span>TH</span> <span>{ workT}</span></li>}
-                                {workDays &&<li><span>FR</span> <span>{ workT}</span></li>}
-                                {workDays && <li><span>SA</span> <span>{workT} </span></li>}
-                               {workDays &&<li><span>SU</span> <span>{ workT}</span></li>}
+                            <TimeList className={id===_id&&show&& 'show'} >
+                              <TimeItem>{workDays ? <TimeBlock><Time>MN</Time>{workT[0] ? <Time>{workT[0]}</Time> : <Time>-------------</Time>}  </TimeBlock> : <li><TimeBlock><Time>MN</Time> <Time>-------------</Time></TimeBlock>   </li>}</TimeItem>
+                              <TimeItem>{workDays ? <TimeBlock><Time>TU</Time>{workT[1] ? <Time>{workT[1]}</Time> : <Time>-------------</Time>}  </TimeBlock> : <li><TimeBlock><Time>TU</Time><Time>-------------</Time></TimeBlock>  </li>}</TimeItem>
+                              <TimeItem>{workDays ? <TimeBlock><Time>WE</Time>{workT[2] ? <Time>{workT[2]}</Time> : <Time>-------------</Time>}  </TimeBlock> : <li><TimeBlock><Time>WE</Time><Time>-------------</Time></TimeBlock>  </li>}</TimeItem>
+                              <TimeItem>{workDays ? <TimeBlock><Time>TH</Time>{workT[3] ? <Time>{workT[3]}</Time> : <Time>-------------</Time>}  </TimeBlock> : <li><TimeBlock><Time>TH</Time><Time>-------------</Time></TimeBlock> </li>}</TimeItem>
+                              <TimeItem>{workDays ? <TimeBlock><Time>FR</Time>{workT[4] ? <Time>{workT[4]}</Time> : <Time>-------------</Time>}  </TimeBlock> : <li><TimeBlock><Time>FR</Time><Time>-------------</Time></TimeBlock> </li>}</TimeItem>
+                              <TimeItem>{workDays ? <TimeBlock><Time>SA</Time>{workT[5] ? <Time>{workT[5]}</Time> : <Time>-------------</Time>}  </TimeBlock> : <li><TimeBlock><Time>SA</Time><Time>-------------</Time></TimeBlock> </li>}</TimeItem>
+                              <TimeItem>{workDays ? <TimeBlock><Time>SU</Time>{workT[6] ? <Time>{workT[6]}</Time> : <Time>-------------</Time>}  </TimeBlock> : <li><TimeBlock><Time>SU</Time><Time>-------------</Time></TimeBlock> </li>}</TimeItem>
                                 </TimeList>
-
-                                 {/* {showModal && (
-                              <ModalFriends onClose={toggleModal}>
-                                <TimeList>
-                                {workDays ?<li><span>MN</span> <span>{ workT}</span> </li>:<li><span>MN</span> <span>-------</span> </li>}
-                                {workDays &&<li><span>TU</span> <span>{ workT}</span></li>}
-                                {workDays &&<li><span>WE</span> <span>{ workT}</span></li>}
-                                {workDays &&<li><span>TH</span> <span>{ workT}</span></li>}
-                                {workDays &&<li><span>FR</span> <span>{ workT}</span></li>}
-                                {workDays && <li><span>SA</span> <span>{workT} </span></li>}
-                               {workDays &&<li><span>SU</span> <span>{ workT}</span></li>}
-                                </TimeList>
-                              </ModalFriends>
-      )} */}
                             </Item>
 
                             <Item>Adress:<br />
@@ -136,7 +121,8 @@ console.log(friends)
                               {
                                 phone ? (<Anchor href={`tel:${phone}`}>{phone}</Anchor>) : (<span>----------</span>)
                               }
-                            </Item>
+                          </Item>
+
                           </ul>
 
                         </SecondThumb>

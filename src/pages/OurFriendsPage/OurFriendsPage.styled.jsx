@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
 padding: 12px 17px 12px 4px;
@@ -93,8 +94,8 @@ export const Anchor = styled.a`
 color: inherit;
 text-decoration: none;
 `
-export const TimeClick = styled.div`
-
+export const TimeClick = styled(NavLink)`
+color:inherit;
 cursor: pointer;
 transition: color 250ms linear;
 /* ::after{
@@ -121,22 +122,25 @@ background-color:red;
 
 `
 export const TimeBlock = styled.div`
-position:absolute;
-width:120px;
-height:130px;
-transform:scale(1);
-transform-origin: top;
-/* color: inherit; */
-background-color:white;
-/* background-color:yellow; */
-z-index:100;
-transition:transform 250ms linear;
+display:flex;
+justify-content:space-between;
 
 `
 export const TimeList = styled.ul`
-width:150px;
-height:130px;
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 500;
+font-size: 12px;
+line-height: 16px;
+margin-bottom:4px;
+width:120px;
+/* height:160px; */
 transform:scale(0);
+background: #FFFFFF;
+border: 1px solid #F59256;
+box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+border-radius: 8px;
+padding:12px;
 transform-origin: top;
 position:absolute;
 background-color:white;
@@ -149,4 +153,6 @@ z-index:101;
 `
 export const TimeItem = styled.div`
 
+`
+export const Time = styled.p`
 `

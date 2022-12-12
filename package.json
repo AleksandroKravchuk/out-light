@@ -2,7 +2,7 @@
   "name": "out-light",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aleksandrokravchuk.github.io/out-light/",
+
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.3",

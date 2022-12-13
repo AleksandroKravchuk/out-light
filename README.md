@@ -89,3 +89,9 @@
 3. Если все шаги прошли успешно, собранная продакшн версия файлов проекта
    отправляется в ветку `gh-pages`. В противном случае, в логе выполнения
    скрипта будет указано в чем проблема.
+
+Директорія global
+ mkdir ~/.npm-global 
+npm config set prefix '~/.npm-global'
+export PATH=~/.npm-global/bin:$PATH 
+source ~/.profile

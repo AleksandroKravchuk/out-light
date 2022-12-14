@@ -147,6 +147,7 @@ background-color:white;
 top:40px;
 left:0px;
 z-index:101;
+transition:transform  250ms linear;
 &.show{
   transform:scale(1);
 }

@@ -7,7 +7,8 @@ const NoticesCategoryList = () => {
     const {notices, handleFavoriteClick,deleteNot} = useOutletContext();
 
     return (
-        <>
+      <>
+        
             {notices.length !== 0
                 ? (<Gallery>
             {notices.map(notice => <NoticeCategoryItem key={notice._id} notice={notice} onClick={handleFavoriteClick} noticeDel={deleteNot } />)}

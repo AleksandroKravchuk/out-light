@@ -1,5 +1,3 @@
-
-import Loading from "components/Loading/Loading";
 import NoticesCategoriesNav from "components/Notices/NoticesCategoryNav/NoticesCategoryNav";
 import { Suspense, useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
@@ -20,6 +18,8 @@ import {
  useGetNoticesSearchMutation,
   useGetAllNoticesMutation,
 } from 'redux/auth/authOperations';
+import Loading from 'components/Loading/Loading';
+import Error from '../../components/error/error';
 
 const NoticesPage = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
@@ -27,10 +27,9 @@ const NoticesPage = () => {
   const [query, setQuery] = useState("sell");
   const [count, setCount] = useState(0);
   const [notices, setNotices] = useState([]);
-  // const [error, setError] = useState(false);
   const [dell, setDell] = useState(false);
   const location = useLocation();
-  const [getAllNotices] = useGetAllNoticesMutation();
+  const [getAllNotices,{error, isFetching}] = useGetAllNoticesMutation();
   const [getSearch] = useGetNoticesSearchMutation();
   const user = useSelector(state => state.auth.isLoggedIn);
 
@@ -97,7 +96,8 @@ const NoticesPage = () => {
 
         <Container>
             <Title>Find your favorite pet</Title>
-
+  {error && <Error/>}
+        {isFetching && <Loading />}
             <SearchForm onSubmit={handleSubmit}/>
             <Nav>
 

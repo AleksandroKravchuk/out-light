@@ -5,8 +5,6 @@ import {
   useGetAllNewsQuery,
   useGetSearchNewsMutation,
 } from 'redux/auth/authOperations';
-// import Loading from 'components/Loading/Loading';
-// import Error from '../../components/error/error';
 import MainContainer from 'components/commonStyles/Container.styled';
 import {
   NewsPageTitle,
@@ -15,10 +13,12 @@ import {
   NewsItemLink, NewsItemDate,
   NewsItemRectangle, NewsItemInfo
 } from './NewsPages.styled'
+import Loading from 'components/Loading/Loading';
+import Error from '../../components/error/error';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const NewsPages = () => {
-const {data} = useGetAllNewsQuery();
+const {data, error, isFetching } = useGetAllNewsQuery();
 const [getSearch] = useGetSearchNewsMutation();
 const [resultQuery, setResultQuery] = useState('')
 
@@ -43,11 +43,8 @@ const [resultQuery, setResultQuery] = useState('')
     <MainContainer>
         <NewsPageTitle>News</NewsPageTitle>
         <SearchForm onSubmit={handleSubmit} />
-
-        {/* {isLoading && <Loading />} */}
-
-        {/* {error && <Error />} */}
-
+  {error && <Error/>}
+        {isFetching && <Loading />}
       <NewsSet>
         {resultQuery.length !== 0 && resultQuery.map(({_id, title, url, description, date }) =>
         (<NewsItem key={_id}>

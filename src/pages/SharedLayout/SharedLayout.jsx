@@ -4,12 +4,13 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 const SharedLayout = () => {
+  const firstLoad = true;
   return (
     <MainContainer>
-      <Header />
+      <Header load={firstLoad} />
 
       <Suspense>
-        <Outlet />
+        <Outlet load={firstLoad} />
       </Suspense>
     </MainContainer>
   );

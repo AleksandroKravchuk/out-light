@@ -1,7 +1,11 @@
-const Error = () => {
+import {Section,Text} from './error.styled'
 
-    return (
-        <p>Something went wrong. Try again</p>
+const Error = () => {
+  return (
+     <Section>
+       <Text>Sorry, something went wrong. Try again</Text>
+     </Section>
+
     )
 }
 

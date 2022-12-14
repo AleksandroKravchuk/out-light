@@ -1,13 +1,22 @@
-import wait from 'img/wait.jpg';
+
 import { Container } from './Loading.styled';
+import { ColorRing} from  'react-loader-spinner'
+
 
 const Loading = () => {
 
     return (
 
-        <Container>
-            <img src={wait} alt='wait' />
-            <p>Почекайте 2-3 тижні. Максимум 5</p>
+      <Container>
+        <ColorRing
+  visible={true}
+  height="80"
+  width="80"
+  ariaLabel="blocks-loading"
+  wrapperStyle={{}}
+  wrapperClass="blocks-wrapper"
+  colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+/>
         </Container>
     )
 }

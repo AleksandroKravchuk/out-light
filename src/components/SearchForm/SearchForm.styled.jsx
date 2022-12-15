@@ -3,17 +3,18 @@ import styled from "styled-components";
 
 export const SearchBar = styled.div`
     display: flex;
+    max-width:60%;
     justify-content: center;
     margin-bottom: 40px;
-
+margin-left:auto;
+margin-right:auto;
     @media screen and (min-width: 768px){
         margin-bottom: 60px;
     }
 `
 export const Form = styled.form`
-    display: flex;
-    width: 280px;
-    height: 40px;
+display:flex;
+justify-content:center;
 
     @media screen and (min-width: 768px){
         width: 608px;
@@ -23,7 +24,7 @@ export const Form = styled.form`
 `
 
 export const InputSearch = styled.input`
-    width: 240px;
+   width: 200px;
     border-radius: 20px 0 0 20px;
     border: none;
     outline: none;

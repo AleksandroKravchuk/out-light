@@ -53,20 +53,21 @@ const NoticesPage = () => {
       default:
         return;
     }
-    //     (async function () {
-    //   try {
 
-    //   } catch (e) {
-    //  console.log(e)
-    //   }
-    // })();
+    // if (error) {
+    // return Notify.warning(
+    //     'Please,login'
+    //   );
+    // }
     setTimeout(() => {
- getAllNotices(query).then(({data}) =>
-      setNotices(data.data.notices))
-
+      getAllNotices(query).then(({ data }) => {
+     setNotices(data.data.notices)
+ })
     }, 350)
 
-  }, [location.pathname,count,  query, getAllNotices, showModal,dell])
+
+
+  }, [location.pathname,count,  query, getAllNotices, showModal, dell])
 
 
     const handleSubmit =async formInput => {
@@ -129,15 +130,10 @@ const NoticesPage = () => {
              {showModal && (
         <Modal onClose={toggleModal}><ModalAddNotice onClose={toggleModal}/> </Modal>
       )}
-            {/* {!error
-          ? ( */}
+
             <Suspense fallback={<Loading />}>
                     <Outlet context={{notices, handleFavoriteClick,deleteNot}} />
           </Suspense>
-          {/* )
-                : <StyledErr>There is no information</StyledErr>
-            } */}
-
         </Container>
     );
 };

@@ -5,7 +5,7 @@ import { Item, Text, Image, DeleteBtn, DeleteSvg } from './PetsList.styled';
 
 export const PetsList = ({ pets }) => {
   const [deleteUserPet] = useDeleteUserPetMutation();
-
+console.log(pets)
   return (
     <ul>
       {pets.map(({ _id, photoPet, name, birth, breed, comments }) => {

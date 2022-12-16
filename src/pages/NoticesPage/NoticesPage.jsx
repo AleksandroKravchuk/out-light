@@ -54,11 +54,11 @@ const NoticesPage = () => {
         return;
     }
 
-    // if (error) {
-    // return Notify.warning(
-    //     'Please,login'
-    //   );
-    // }
+    if (error) {
+    return Notify.warning(
+        'Please,login'
+      );
+    }
     setTimeout(() => {
       getAllNotices(query).then(({ data }) => {
      setNotices(data.data.notices)
@@ -67,7 +67,7 @@ const NoticesPage = () => {
 
 
 
-  }, [location.pathname,count,  query, getAllNotices, showModal, dell])
+  }, [location.pathname,count,  query, getAllNotices, showModal, dell,error])
 
 
     const handleSubmit =async formInput => {

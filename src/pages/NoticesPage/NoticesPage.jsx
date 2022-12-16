@@ -54,11 +54,6 @@ const NoticesPage = () => {
         return;
     }
 
-    if (error) {
-    return Notify.warning(
-        'Please,login'
-      );
-    }
     setTimeout(() => {
       getAllNotices(query).then(({ data }) => {
      setNotices(data.data.notices)

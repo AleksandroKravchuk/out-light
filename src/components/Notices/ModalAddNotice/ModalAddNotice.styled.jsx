@@ -386,26 +386,52 @@ margin-right: 40px;
 }
 `;
 
-export const SpanSexPet = styled.span`
+export const SpanSexPetMale = styled.span`
 font-family: 'Manrope';
 font-style: normal;
 font-weight: 500;
 font-size: 18px;
 line-height: 26px;
-
 margin-top: 12px;
-
 display: flex;
 align-items: center;
-
 color: #000000;
-
+transition:color 250ms linear;
+&:hover,
+&:focus{
+  color:#F59256;
+}
+&.activeMale{
+  color:#F59256;
+}
 @media screen and (min-width: 768px) {
 font-size: 20px;
 }
 
 `;
+export const SpanSexPetFemale = styled.span`
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 26px;
+margin-top: 12px;
+display: flex;
+align-items: center;
+color: #000000;
+transition:color 250ms linear;
+&:hover,
+&:focus{
+  color:#F59256;
+}
+&.activeFemale{
+  color:#F59256;
+}
+@media screen and (min-width: 768px) {
+font-size: 20px;
+}
 
+`;
 export const InputFile = styled.input`
 width: 116px;
 height: 116px;

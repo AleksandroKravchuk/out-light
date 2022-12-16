@@ -10,7 +10,7 @@ import {
   Span, ButtonCategory, ButtonsCategoryContainer,
   ButtonsSubmitColor, ButtonsSubmitWhite, ButtonsSubmitContainer,
   ButtonsSexPet, ButtonsSexPetContainer,
-  Textarea, SpanSexPet, CloseButton,
+  Textarea, SpanSexPetMale,SpanSexPetFemale ,CloseButton,
   AddFileInput,
   UploadImageContainer,
   AddImageButton,
@@ -33,7 +33,9 @@ const [createNotice] = useCreateNoticeMutation();
     const [sex, setSex] = useState('');
     const [location, setLocation] = useState('');
     const [price, setPrice] = useState('0');
-    const [photoPet, setPhotoPet] = useState(null);
+  const [photoPet, setPhotoPet] = useState(null);
+   const [activeMale, setActiveMale] = useState(false);
+  const [activeFemale, setActiveFemale] = useState(false);
 
     const handleChange = e => {
         const { name, value } = e.target;
@@ -102,7 +104,24 @@ const [createNotice] = useCreateNoticeMutation();
     createNotice(formData);
     onClose();
   }
+  const sexClick = (value) => {
+    if (value === "male") {
+       if (!activeMale) {
+         setActiveFemale(false)
+        setActiveMale(!activeMale)
+    }
 
+    }
+    if (value === "female") {
+        if (!activeFemale) {
+          setActiveMale(false)
+          setActiveFemale(!activeFemale)
+        }
+      }
+
+
+    setSex(value)
+}
     return (
         <>
             <Container>
@@ -171,8 +190,8 @@ const [createNotice] = useCreateNoticeMutation();
 
                <Label>The sex<Span>*</Span>:
                         <ButtonsSexPetContainer>
-                            <ButtonsSexPet type="button" onClick={()=>setSex('male')}> <MaleSvg><Male/></MaleSvg> <SpanSexPet>Male</SpanSexPet></ButtonsSexPet>
-                            <ButtonsSexPet type="button" onClick={()=>setSex('female')}> <FemaleSvg><Female></Female></FemaleSvg> <SpanSexPet>Female</SpanSexPet></ButtonsSexPet>
+                            <ButtonsSexPet type="button" onClick={()=>sexClick('male')}> <MaleSvg><Male/></MaleSvg> <SpanSexPetMale className={activeMale && 'activeMale'}>Male</SpanSexPetMale></ButtonsSexPet>
+                            <ButtonsSexPet type="button" onClick={()=>sexClick('female')}> <FemaleSvg><Female></Female></FemaleSvg> <SpanSexPetFemale className={activeFemale&& 'activeFemale'}>Female</SpanSexPetFemale></ButtonsSexPet>
                         </ButtonsSexPetContainer>
                     </Label>
 

@@ -82,7 +82,7 @@ let category = '';
   const handleCloseModal = () => setShowModal(false);
 
   const errorAdd = () => {
-  return Notify.failure('You are not authorized');
+  return Notify.warning('Please login');
 }
 
 

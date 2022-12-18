@@ -55,14 +55,14 @@ const NoticesPage = () => {
     }
 
     setTimeout(() => {
-      getAllNotices(query).then(({ data }) => {
-     setNotices(data.data.notices)
+ getAllNotices(query).then(({ data }) => {
+   setNotices(data.data.notices)
  })
-    }, 350)
+    }, 1100)
 
 
 
-  }, [location.pathname,count,  query, getAllNotices, showModal, dell,error])
+  }, [location.pathname,count,  query, getAllNotices,showModal,dell])
 
 
     const handleSubmit =async formInput => {
@@ -85,7 +85,7 @@ const NoticesPage = () => {
         setShowModal(!showModal);
     }
      const errorAdd = () => {
-  return Notify.failure('You are not authorized');
+  return Notify.warning('Please login');
 }
 
     return (

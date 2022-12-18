@@ -7,8 +7,8 @@ import { ReactComponent as CloseCross } from "../../../icons/cross.svg";
 import { useCreateNoticeMutation} from 'redux/auth/authOperations';
 import {
   Input, Label, Form, Container, Title, P,
-  Span, ButtonCategory, ButtonsCategoryContainer,
-  ButtonsSubmitColor, ButtonsSubmitWhite, ButtonsSubmitContainer,
+  Span, ButtonCategorySell,ButtonCategoryLost,ButtonCategoryGood, ButtonsCategoryContainer,
+   ButtonsSubmitWhite, ButtonsSubmitContainer,
   ButtonsSexPet, ButtonsSexPetContainer,
   Textarea, SpanSexPetMale,SpanSexPetFemale ,CloseButton,
   AddFileInput,
@@ -36,7 +36,9 @@ const [createNotice] = useCreateNoticeMutation();
   const [photoPet, setPhotoPet] = useState(null);
    const [activeMale, setActiveMale] = useState(false);
   const [activeFemale, setActiveFemale] = useState(false);
-
+  const [activeSell, setActiveSell] = useState(false);
+  const [activeLost, setActiveLost] = useState(false);
+  const [activeGood, setActiveGood] = useState(false);
     const handleChange = e => {
         const { name, value } = e.target;
         switch (name) {
@@ -118,10 +120,34 @@ const [createNotice] = useCreateNoticeMutation();
           setActiveFemale(!activeFemale)
         }
       }
-
-
     setSex(value)
-}
+  }
+  const addCategory = (value) => {
+    if (value === 'sell') {
+      setCategory(value);
+      if (!activeSell) {
+        setActiveGood(false)
+        setActiveLost(false)
+        setActiveSell(!activeSell)
+      }
+    }
+        if (value === 'lost-found') {
+      setCategory(value);
+      if (!activeLost) {
+        setActiveGood(false)
+        setActiveSell(false)
+        setActiveLost(!activeLost)
+      }
+    }
+    if (value === 'in good hands') {
+      setCategory(value);
+      if (!activeGood) {
+        setActiveLost(false)
+        setActiveSell(false)
+        setActiveGood(!activeGood)
+      }
+    }
+  }
     return (
         <>
             <Container>
@@ -133,9 +159,9 @@ const [createNotice] = useCreateNoticeMutation();
             {page ? (
                 <Form onSubmit={handleAddInfo}>
                 <ButtonsCategoryContainer>
-                    <ButtonCategory type="button" onClick={()=>setCategory('lost-found')}>lost/found</ButtonCategory>
-                    <ButtonCategory type="button" onClick={()=>setCategory('in good hands')}>In good hands</ButtonCategory>
-                    <ButtonCategory type="button" onClick={()=>setCategory('sell')}>sell</ButtonCategory>
+                    <ButtonCategoryLost type="button" onClick={()=>addCategory('lost-found')} className={activeLost && 'active'}>lost/found</ButtonCategoryLost>
+                    <ButtonCategoryGood type="button" onClick={()=>addCategory('in good hands')} className={activeGood && 'active'}>In good hands</ButtonCategoryGood>
+                    <ButtonCategorySell type="button" onClick={()=>addCategory('sell')} className={activeSell && 'active'}>sell</ButtonCategorySell>
                 </ButtonsCategoryContainer>
                     <Label>Tittle of ad
                         <Span>*</Span>
@@ -183,7 +209,7 @@ const [createNotice] = useCreateNoticeMutation();
                     </Label>
 
                     <ButtonsSubmitContainer>
-                        < ButtonsSubmitColor type="button" onClick={handleAddInfo }>Next</ ButtonsSubmitColor>
+                        < ButtonsSubmitWhite type="button" onClick={handleAddInfo }>Next</ ButtonsSubmitWhite>
                         < ButtonsSubmitWhite type="button" onClick={()=>onClose()}>Cancel</ ButtonsSubmitWhite>
                     </ButtonsSubmitContainer>
             </Form>) : (<Form>
@@ -242,7 +268,7 @@ const [createNotice] = useCreateNoticeMutation();
                                     required></Textarea>
                     </Label>
                     <ButtonsSubmitContainer>
-                        < ButtonsSubmitColor type="submit" onClick={submitForm}>Done</ ButtonsSubmitColor>
+                        < ButtonsSubmitWhite type="submit" onClick={submitForm}>Done</ ButtonsSubmitWhite>
                         < ButtonsSubmitWhite type="button" onClick={()=>setPage(true)}>Back</ ButtonsSubmitWhite>
                             </ButtonsSubmitContainer>
                         </Form>)

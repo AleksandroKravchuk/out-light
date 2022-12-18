@@ -107,19 +107,16 @@ margin-bottom: 32px;
 }
 `;
 
-export const ButtonCategory = styled.button`
-// display: block;
+export const ButtonCategorySell = styled.button`
 height: 35px;
 padding: 8px 25px;
 border: 2px solid #F59256;
 border-radius: 40px;
 background-color: transparent;
 cursor: pointer;
-
 &:not(:last-child) {
 margin-bottom: 12px;
 }
-
 font-family: 'Manrope';
 font-style: normal;
 font-weight: 500;
@@ -128,35 +125,128 @@ line-height: 19px;
 display: flex;
 align-items: center;
 letter-spacing: 0.04em;
-
 color: #000000;
-
 flex: none;
 order: 0;
 flex-grow: 0;
-
+transition:background-color 250ms linear;
+transition:color 250ms linear;
 &:hover,
 &:focus {
     background-color: #F59256;
     color: #FFFFFF;
 }
-
-&:not(:last-child) {
-    margin-right: 8px;
+&.active{
+   background-color: #F59256;
+    color: #FFFFFF;
 }
+/* &:not(:last-child) {
+    margin-right: 8px;
+} */
 
 @media screen and (min-width: 768px) {
 font-size: 20px;
 line-height: 27px;
 height: 47px;
 
-&:not(:last-child) {
-margin-right: 12px;
-margin-bottom: 16 px;
-}
 }
 `;
+export const ButtonCategoryGood = styled.button`
+height: 35px;
+padding: 8px 25px;
+border: 2px solid #F59256;
+border-radius: 40px;
+background-color: transparent;
+cursor: pointer;
+/* &:not(:last-child) { */
+margin-bottom: 12px;
+/* } */
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 19px;
+display: flex;
+align-items: center;
+letter-spacing: 0.04em;
+color: #000000;
+flex: none;
+order: 0;
+flex-grow: 0;
+transition:background-color 250ms linear;
+transition:color 250ms linear;
+&:hover,
+&:focus {
+    background-color: #F59256;
+    color: #FFFFFF;
+}
+&.active{
+   background-color: #F59256;
+    color: #FFFFFF;
+}
+/* &:not(:last-child) { */
+    margin-right: 8px;
+/* } */
 
+@media screen and (min-width: 768px) {
+font-size: 20px;
+line-height: 27px;
+height: 47px;
+
+/* &:not(:last-child) { */
+margin-right: 12px;
+margin-bottom: 16 px;
+/* } */
+}
+`;
+export const ButtonCategoryLost = styled.button`
+height: 35px;
+padding: 8px 25px;
+border: 2px solid #F59256;
+border-radius: 40px;
+background-color: transparent;
+cursor: pointer;
+/* &:not(:last-child) { */
+margin-bottom: 12px;
+/* } */
+font-family: 'Manrope';
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 19px;
+display: flex;
+align-items: center;
+letter-spacing: 0.04em;
+color: #000000;
+flex: none;
+order: 0;
+flex-grow: 0;
+transition:background-color 250ms linear;
+transition:color 250ms linear;
+&:hover,
+&:focus {
+    background-color: #F59256;
+    color: #FFFFFF;
+}
+&.active{
+   background-color: #F59256;
+    color: #FFFFFF;
+}
+/* &:not(:last-child) { */
+    margin-right: 8px;
+
+
+@media screen and (min-width: 768px) {
+font-size: 20px;
+line-height: 27px;
+height: 47px;
+
+/* &:not(:last-child) { */
+margin-right: 12px;
+margin-bottom: 16 px;
+/* } */
+}
+`;
 export const Form = styled.form`
 box-sizing: border-box;
 display: flex;
@@ -169,9 +259,7 @@ font-style: normal;
 font-weight: 500;
 font-size: 18px;
 line-height: 26px;
-
 color: #111111;
-
 &:nth-child(-n + 3) {
 margin-bottom: 16px;
 }
@@ -179,9 +267,7 @@ margin-bottom: 16px;
 @media screen and (min-width: 768px) {
 font-size: 24px;
 line-height: 26px;
-
 color: #000000;
-
 &:nth-child(-n + 3) {
 margin-bottom: 28px;
 }
@@ -195,9 +281,7 @@ font-style: normal;
 font-weight: 500;
 font-size: 18px;
 line-height: 26px;
-
 color: #F59256;
-
 @media screen and (min-width: 768px) {
 font-weight: 400;
 font-size: 24px;
@@ -209,7 +293,6 @@ export const Input = styled.input`
 box-sizing: border-box;
 width: 100%;
 height: 40px;
-
 background-color: #fdf7f2;
 border: 1px solid rgba(245, 146, 86, 0.5);
 border-radius: 40px;
@@ -224,12 +307,9 @@ margin-top: 8px;
     line-height: 19px;
     color: rgba(27, 27, 27, 0.6);
     }
-
 @media screen and (min-width: 768px) {
 height: 48px;
 margin-top: 12px;
-
-
 &::placeholder {
     font-size: 16px;
     line-height: 26px;
@@ -242,7 +322,6 @@ export const Textarea = styled.textarea`
 box-sizing: border-box;
 width: 100%;
 height: 40px;
-
 background-color: #fdf7f2;
 border: 1px solid rgba(245, 146, 86, 0.5);
 border-radius: 40px;
@@ -250,9 +329,7 @@ padding: 10px 14px;
 margin-top: 8px;
 display: flex;
 align-items: center;
-
 resize: none;
-
     &::placeholder {
     font-family: 'Manrope';
     font-style: normal;
@@ -287,13 +364,10 @@ margin-left: auto;
 export const ButtonsSubmitColor = styled.button`
 width: 100%;
 height: 40px;
-
 cursor: pointer;
 border: none;
 border-radius: 40px;
-
 background-color: #F59256;
-
 font-family: 'Manrope';
 font-style: normal;
 font-weight: 500;
@@ -303,10 +377,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 letter-spacing: 0.04em;
-
 color: #FFFFFF;
-
-
 margin-bottom: 12px;
 
 @media screen and (min-width: 768px) {
@@ -324,12 +395,10 @@ margin-bottom: 0px;
 export const ButtonsSubmitWhite = styled.button`
 width: 100%;
 height: 40px;
-
 cursor: pointer;
 border: none;
 border-radius: 40px;
 border: 2px solid #F59256;
-
 font-family: 'Manrope';
 font-style: normal;
 font-weight: 500;
@@ -339,9 +408,9 @@ display: flex;
 align-items: center;
 justify-content: center;
 letter-spacing: 0.04em;
-transition:background-color, 250ms, linear;
-transition:color, 250ms, linear;
-transition:border, 250ms, linear;
+transition:background-color 250ms linear;
+transition:color 250ms linear;
+transition:border 250ms linear;
 color: #111111;
 &:hover{
   color: #FFFFFF;

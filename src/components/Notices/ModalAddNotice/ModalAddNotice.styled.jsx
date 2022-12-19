@@ -307,6 +307,10 @@ margin-top: 8px;
     line-height: 19px;
     color: rgba(27, 27, 27, 0.6);
     }
+    &:hover,
+    &:focus{
+      outline:1px solid #F59256;
+    }
 @media screen and (min-width: 768px) {
 height: 48px;
 margin-top: 12px;
@@ -398,6 +402,7 @@ height: 40px;
 cursor: pointer;
 border: none;
 border-radius: 40px;
+background-color:#FFFFFF;
 border: 2px solid #F59256;
 font-family: 'Manrope';
 font-style: normal;
@@ -425,6 +430,9 @@ margin-right: 20px;
 font-size: 20px;
 line-height: 27px;
 letter-spacing: 0.04em;
+}
+@media screen and (max-width: 767px) {
+margin-bottom:12px;
 }
 `;
 

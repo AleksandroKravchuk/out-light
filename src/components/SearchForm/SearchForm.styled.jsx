@@ -15,7 +15,7 @@ margin-right:auto;
 export const Form = styled.form`
 display:flex;
 justify-content:center;
-
+position:relative;
     @media screen and (min-width: 768px){
         width: 608px;
         height: 44px
@@ -25,7 +25,7 @@ justify-content:center;
 
 export const InputSearch = styled.input`
    width: 200px;
-    border-radius: 20px 0 0 20px;
+    border-radius: 20px 20px;
     border: none;
     outline: none;
     background: #FFFFFF;
@@ -46,6 +46,10 @@ export const InputSearch = styled.input`
 
 `
 export const ButtonSearch = styled.button`
+position:absolute;
+right:0;
+bottom: 0;
+height:100%;
     border: none;
     outline: none;
     background: #FFFFFF;

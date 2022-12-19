@@ -2,13 +2,13 @@ import styled from "styled-components";
 import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
-padding: 12px 17px 12px 4px;
+/* padding: 12px 17px 12px 4px; */
 border-radius: 20px;
 background-color: white;
 color: black;
 box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
 border-radius: 40px;
-
+padding:16px;
 `;
 
 export const FriendsThumb = styled.div`
@@ -58,6 +58,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 width: 110px;
+margin-right:50px;
 `
 
 export const SecondThumb = styled.div`

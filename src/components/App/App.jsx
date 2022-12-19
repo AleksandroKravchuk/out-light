@@ -18,9 +18,9 @@ const AsyncOurFriendsPage = lazy(() =>
 const NotFound = lazy(() => import('pages/NotFound/NotFound'));
 const App = () => {
 const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+const isToken = useSelector(state => state.auth.token);
 
-
-
+console.log(isToken)
   return (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
@@ -29,7 +29,8 @@ const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
         <Route path="login" element={ <AsyncLoginPage />}/>
         <Route path="news" element={<AsyncNewsPage />} />
         <Route path="friends" element={<AsyncOurFriendsPage />} />
-       {isLoggedIn?<Route path="user" element={<AsyncUserPage />} />:<Route path="user" element={<AsyncLoginPage />} />}
+        {isToken ? <Route path="user" element={<AsyncUserPage />} /> : <Route path="user" element={<AsyncLoginPage />} />}
+
            <Route path="notices" element={<AsyncNoticesPage />}>
              <Route path="sell" element={<AsyncNoticesCategoryList />} />
              <Route path="lost-found" element={<AsyncNoticesCategoryList />} />

@@ -15,7 +15,6 @@ import {
 
 const UserPage = ({ nameI = 'User', skip = true }) => {
   const isToken = useSelector(state => state.token);
-  console.log(isToken)
     if (isToken !== null) {
     skip = false;
   }

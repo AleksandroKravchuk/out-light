@@ -17,11 +17,17 @@ import {  useLocation } from "react-router-dom";
 import {
  useGetNoticesSearchMutation,
   useGetAllNoticesMutation,
+  useCurrentUserQuery,
 } from 'redux/auth/authOperations';
 import Loading from 'components/Loading/Loading';
 import Error from '../../components/error/error';
 
-const NoticesPage = () => {
+const NoticesPage = ({ nameI = 'User', skip = true }) => {
+    const isToken = useSelector(state => state.token);
+    if (isToken !== null) {
+    skip = false;
+  }
+ useCurrentUserQuery(nameI, { skip });
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
   const [showModal, setShowModal] = useState(false);
   const [query, setQuery] = useState("sell");
@@ -31,7 +37,7 @@ const NoticesPage = () => {
   const location = useLocation();
   const [getAllNotices,{error, isFetching}] = useGetAllNoticesMutation();
   const [getSearch] = useGetNoticesSearchMutation();
-  const user = useSelector(state => state.auth.isLoggedIn);
+
 
   useEffect(() => {
     switch (location.pathname) {
@@ -92,15 +98,11 @@ const NoticesPage = () => {
 
         <Container>
             <Title>Find your favorite pet</Title>
-  {error && <Error/>}
-        {isFetching && <Loading />}
-            <SearchForm onSubmit={handleSubmit}/>
+        {error ? <Error /> : (     <> <SearchForm onSubmit={handleSubmit}/>
             <Nav>
-
             <Category>
                 <NoticesCategoriesNav />
-
-                {user &&
+                {isLoggedIn &&
                     <AuthLinkContainer className="own-block">
                         <AuthLink to="favorite">Favorite ads</AuthLink>
                         <AuthLink to="owner">My ads</AuthLink>
@@ -122,6 +124,10 @@ const NoticesPage = () => {
 
         </AddPetBlock>
             </Nav>
+  </>)}
+        {isFetching && <Loading />}
+
+
              {showModal && (
         <Modal onClose={toggleModal}><ModalAddNotice onClose={toggleModal}/> </Modal>
       )}

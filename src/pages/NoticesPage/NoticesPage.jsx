@@ -64,7 +64,7 @@ const NoticesPage = ({ nameI = 'User', skip = true }) => {
  getAllNotices(query).then(({ data }) => {
    setNotices(data.data.notices)
  })
-    }, 1100)
+    }, 1000)
 
 
 

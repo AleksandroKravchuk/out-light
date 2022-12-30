@@ -13,7 +13,7 @@ import {
 
 export const ModalNotice = ({ notice, onClose,onAddFavoriteBtnClick,errorAdd}) => {
 
-const userId = useSelector(state => state.auth.id);
+  const userId = useSelector(state => state.auth.user.data);
 const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
 const { title, name, birth, breed,
         location, sex, price,

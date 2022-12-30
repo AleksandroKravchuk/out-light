@@ -19,7 +19,7 @@ export const NoticeCategoryItem = ({ notice, onClick ,noticeDel}) => {
   const [deleteNotice] = useDeleteNoticeMutation();
   const [deleteFavoriteNotice] = useDeleteFavoriteNoticeMutation();
   const [addFavoriteNotice] = useAddFavoriteNoticeMutation();
-  const userId = useSelector(state => state.auth.id);
+  const userId = useSelector(state => state.auth.user.data);
 
   const isOwner = () => {
     if (notice.owner._id === userId) {
@@ -84,7 +84,6 @@ let category = '';
   const errorAdd = () => {
   return Notify.warning('Please login');
 }
-
 
     return (
         <NoticeCategoryItemStyled>

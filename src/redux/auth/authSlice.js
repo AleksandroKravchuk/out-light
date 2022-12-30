@@ -5,6 +5,7 @@ const initialState = {
   user: { email: null, password: null, id: null },
   token: null,
   isLoggedIn: false,
+  id: '',
   isFetchingCurrent: true,
 };
 
@@ -32,7 +33,9 @@ const authSlice = createSlice({
     );
     builder.addMatcher(
       authApi.endpoints.loginUser.matchFulfilled,
+
       (state, { payload }) => {
+        console.log(payload);
         // state.user = payload.data.user;
         state.id = payload.id;
         state.token = payload.token.token;
@@ -56,21 +59,14 @@ const authSlice = createSlice({
         state.isLoading = false;
       }
     );
-    builder.addMatcher(
-      authApi.endpoints.currentUser.matchFulfilled,
-      (state, _) => {
-        state.isLoggedIn = true;
-        // state.isLoading = false;
-      }
-    );
-    builder.addMatcher(authApi.endpoints.currentUser.matchPending, state => {
-      state.isFetchingCurrent = false;
-    });
+
     builder.addMatcher(
       authApi.endpoints.currentUser.matchFulfilled,
       (state, { payload }) => {
         state.user = payload;
-
+        state.isLoggedIn = true;
+        // state.id = payload.id;
+        state.isFetchingCurrent = false;
         state.isFetchingCurrent = true;
       }
     );
